@@ -1,0 +1,41 @@
+﻿<controls:MetroWindow  x:Class="Sesa.Desktop.Common.ModalDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="{Binding RelativeSource={RelativeSource Self},Path=Content.Key,Converter={StaticResource ResourceConverter}}" Height="600" Width="800" FlowDirection="RightToLeft" FontFamily="{StaticResource FontFamily3}">
+  <Window.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Green.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Window.Resources>
+  <controls:MetroWindow.ContentTemplate>
+    <DataTemplate>
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ContentControl FontFamily="{StaticResource FontFamily2}" FontSize="{StaticResource FontSize2X}" Grid.Row="0" Grid.Column="0" Content="{Binding Navigator}"/>
+        <ItemsControl Grid.Row="1" Grid.Column="0" Focusable="False" ItemsSource="{Binding Navigator.DataContext.CommandObjects}">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate>
+              <Button  MinWidth="50" Height="50" Command="{Binding Command}" Content="{Binding Key,Converter={StaticResource ResourceConverter}}"/>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <StackPanel Orientation="Horizontal"/>
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+        </ItemsControl>
+      </Grid>
+    </DataTemplate>
+  </controls:MetroWindow.ContentTemplate>
+</controls:MetroWindow>

@@ -1,0 +1,78 @@
+﻿<common:UserControlBase x:Class="Sesa.Desktop.Views.ProductEditView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:common="clr-namespace:Sesa.Desktop.Common"
+            xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit" xmlns:views="clr-namespace:Sesa.Desktop.Views"
+                        DataContext="{Binding Source={StaticResource Locator}, Path=ProductEditViewModel}"
+             >
+  <StackPanel Orientation="Vertical">
+    <StackPanel Orientation="Vertical">
+      <StackPanel Orientation="Horizontal">
+        <common:LayoutItem Label="عنوان" Width="{StaticResource DefaultUnitWidth}">
+          <TextBox Text="{Binding Entity.Caption,ValidatesOnDataErrors=True}" Style="{StaticResource TextBoxStyle}"/>
+        </common:LayoutItem>
+      </StackPanel>
+      <StackPanel Orientation="Horizontal">
+        <common:LayoutItem Label="درصد ارزش افزوده" Width="{StaticResource DefaultUnitWidth}">
+          <TextBox Text="{Binding Entity.AddedValuePercent,ValidatesOnDataErrors=True}" Style="{StaticResource TextBoxStyle}"/>
+        </common:LayoutItem>
+        <common:LayoutItem Label="درصد مجاز ورود" Width="{StaticResource DefaultUnitWidth}">
+          <TextBox Text="{Binding Entity.ValidInputPercent,ValidatesOnDataErrors=True}" Style="{StaticResource TextBoxStyle}"/>
+        </common:LayoutItem>
+      </StackPanel>
+    </StackPanel>
+    <GroupBox Header="مواد داخلی">
+      <DataGrid ItemsSource="{Binding Internals}" AutoGenerateColumns="False" AlternatingRowBackground="{x:Null}"
+             CanUserAddRows="True" CanUserDeleteRows="True" CanUserReorderColumns="True"
+             RowHeaderWidth="20">
+        <DataGrid.Columns>
+          <DataGridComboBoxColumn Header="ماده" SelectedItemBinding ="{Binding Material,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" DisplayMemberPath="Caption">
+            <DataGridComboBoxColumn.ElementStyle>
+              <Style TargetType="ComboBox">
+                <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:ProductEditView}}, Path=DataContext.Materials}"/>
+                <Setter Property="IsReadOnly" Value="True"/>
+              </Style>
+            </DataGridComboBoxColumn.ElementStyle>
+            <DataGridComboBoxColumn.EditingElementStyle>
+              <Style TargetType="ComboBox">
+                <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:ProductEditView}}, Path=DataContext.Materials}"/>
+                <Setter Property="DisplayMemberPath" Value="Caption" />
+              </Style>
+            </DataGridComboBoxColumn.EditingElementStyle>
+          </DataGridComboBoxColumn>
+          <DataGridTextColumn Header="مقدار" Binding="{Binding MockValue,ValidatesOnDataErrors=True}"/>
+          <DataGridTextColumn Header="واحد" Binding="{Binding Material.Unit.Caption,Mode=OneWay,ValidatesOnDataErrors=True}" IsReadOnly="True"/>
+          <DataGridTextColumn Header="پرت" Binding="{Binding Pert,ValidatesOnDataErrors=True}"/>
+        </DataGrid.Columns>
+      </DataGrid>
+    </GroupBox>
+    <GroupBox Header="مواد خارجی">
+      <DataGrid ItemsSource="{Binding Externals}" AutoGenerateColumns="False" AlternatingRowBackground="{x:Null}"
+             CanUserAddRows="True" CanUserDeleteRows="True" CanUserReorderColumns="True"
+             RowHeaderWidth="20">
+        <DataGrid.Columns>
+          <DataGridComboBoxColumn Header="ماده" SelectedItemBinding ="{Binding Material,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" DisplayMemberPath="Caption">
+            <DataGridComboBoxColumn.ElementStyle>
+              <Style TargetType="ComboBox">
+                <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:ProductEditView}}, Path=DataContext.Materials}"/>
+                <Setter Property="IsReadOnly" Value="True"/>
+              </Style>
+            </DataGridComboBoxColumn.ElementStyle>
+            <DataGridComboBoxColumn.EditingElementStyle>
+              <Style TargetType="ComboBox">
+                <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:ProductEditView}}, Path=DataContext.Materials}"/>
+                <Setter Property="DisplayMemberPath" Value="Caption" />
+              </Style>
+            </DataGridComboBoxColumn.EditingElementStyle>
+          </DataGridComboBoxColumn>
+          <DataGridTextColumn Header="مقدار" Binding="{Binding MockValue,ValidatesOnDataErrors=True}"/>
+          <DataGridTextColumn Header="واحد" Binding="{Binding Material.Unit.Caption,ValidatesOnDataErrors=True}"/>
+          <DataGridTextColumn Header="پرت" Binding="{Binding Pert,ValidatesOnDataErrors=True}"/>
+        </DataGrid.Columns>
+      </DataGrid>
+
+    </GroupBox>
+  </StackPanel>
+</common:UserControlBase>

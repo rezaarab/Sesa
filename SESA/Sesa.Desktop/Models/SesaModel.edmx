@@ -1,0 +1,863 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SesaModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="SesaModelStoreContainer">
+    <EntitySet Name="Product" EntityType="SesaModel.Store.Product" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Material" EntityType="SesaModel.Store.Material" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="InternalProductMaterial" EntityType="SesaModel.Store.InternalProductMaterial" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Unit" EntityType="SesaModel.Store.Unit" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WarehouseBill" EntityType="SesaModel.Store.WarehouseBill" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WarehouseBillDetail" EntityType="SesaModel.Store.WarehouseBillDetail" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Testimony" EntityType="SesaModel.Store.Testimony" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TestimonyDetail" EntityType="SesaModel.Store.TestimonyDetail" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ExternalProductMaterial" EntityType="SesaModel.Store.ExternalProductMaterial" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="InternalMaterialProductMaterial" Association="SesaModel.Store.InternalMaterialProductMaterial">
+      <End Role="Material" EntitySet="Material" />
+      <End Role="ProductMaterialTable" EntitySet="InternalProductMaterial" />
+    </AssociationSet>
+    <AssociationSet Name="InternalProductProductMaterial" Association="SesaModel.Store.InternalProductProductMaterial">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductMaterialTable" EntitySet="InternalProductMaterial" />
+    </AssociationSet>
+    <AssociationSet Name="UnitMaterial" Association="SesaModel.Store.UnitMaterial">
+      <End Role="Unit" EntitySet="Unit" />
+      <End Role="Material" EntitySet="Material" />
+    </AssociationSet>
+    <AssociationSet Name="MaterialWarehouseBillDetail" Association="SesaModel.Store.MaterialWarehouseBillDetail">
+      <End Role="Material" EntitySet="Material" />
+      <End Role="WarehouseBillDetail" EntitySet="WarehouseBillDetail" />
+    </AssociationSet>
+    <AssociationSet Name="WarehouseBillWarehouseBillDetail" Association="SesaModel.Store.WarehouseBillWarehouseBillDetail">
+      <End Role="WarehouseBill" EntitySet="WarehouseBill" />
+      <End Role="WarehouseBillDetail" EntitySet="WarehouseBillDetail" />
+    </AssociationSet>
+    <AssociationSet Name="UnitWarehouseBillDetail" Association="SesaModel.Store.UnitWarehouseBillDetail">
+      <End Role="Unit" EntitySet="Unit" />
+      <End Role="WarehouseBillDetail" EntitySet="WarehouseBillDetail" />
+    </AssociationSet>
+    <AssociationSet Name="ProductTestimony" Association="SesaModel.Store.ProductProductionTestimony">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductionTestimony" EntitySet="Testimony" />
+    </AssociationSet>
+    <AssociationSet Name="TestimonyTestimonyDetail" Association="SesaModel.Store.TestimonyTestimonyDetail">
+      <End Role="Testimony" EntitySet="Testimony" />
+      <End Role="TestimonyDetail" EntitySet="TestimonyDetail" />
+    </AssociationSet>
+    <AssociationSet Name="WarehouseBillTestimonyDetail" Association="SesaModel.Store.WarehouseBillTestimonyDetail">
+      <End Role="WarehouseBill" EntitySet="WarehouseBill" />
+      <End Role="TestimonyDetail" EntitySet="TestimonyDetail" />
+    </AssociationSet>
+    <AssociationSet Name="MaterialTestimonyDetail" Association="SesaModel.Store.MaterialTestimonyDetail">
+      <End Role="Material" EntitySet="Material" />
+      <End Role="TestimonyDetail" EntitySet="TestimonyDetail" />
+    </AssociationSet>
+    <AssociationSet Name="ProductExternalProductMaterial" Association="SesaModel.Store.ProductExternalProductMaterial">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ExternalProductMaterial" EntitySet="ExternalProductMaterial" />
+    </AssociationSet>
+    <AssociationSet Name="MaterialExternalProductMaterial" Association="SesaModel.Store.MaterialExternalProductMaterial">
+      <End Role="Material" EntitySet="Material" />
+      <End Role="ExternalProductMaterial" EntitySet="ExternalProductMaterial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BaseUnit_DerivedUnit" Association="SesaModel.Store.FK_BaseUnit_DerivedUnit">
+      <End Role="Unit" EntitySet="Unit" />
+      <End Role="Unit1" EntitySet="Unit" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Caption" Type="nvarchar" Nullable="false" />
+    <Property Name="ValidInputPercent" Type="decimal" Nullable="false" />
+    <Property Name="AddedValuePercent" Type="decimal" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Material">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Caption" Type="nvarchar" Nullable="false" />
+    <Property Name="GramFormula" Type="nvarchar" Nullable="true" />
+    <Property Name="IsFloatValue" Type="bit" Nullable="false" />
+    <Property Name="IsPackingType" Type="bit" Nullable="false" />
+    <Property Name="Unit_Id" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InternalProductMaterial">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Value" Type="decimal" Nullable="false" />
+    <Property Name="Pert" Type="decimal" Nullable="false" DefaultValue="0" />
+    <Property Name="Material_Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Product_Id" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Symbol" Type="nvarchar" Nullable="false" />
+    <Property Name="Caption" Type="nvarchar" Nullable="false" />
+    <Property Name="BaseCoefficient" Type="nvarchar" Nullable="true" />
+    <Property Name="BaseUnit_Id" Type="uniqueidentifier" Nullable="true" />
+  </EntityType>
+  <EntityType Name="WarehouseBill">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RowNumber" Type="nvarchar" Nullable="false" />
+    <Property Name="EmissionDate" Type="nvarchar" Nullable="false" />
+    <Property Name="IsInternal" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WarehouseBillDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Value" Type="decimal" Nullable="false" />
+    <Property Name="Weight" Type="decimal" Nullable="false" />
+    <Property Name="Material_Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="WarehouseBill_Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Unit_Id" Type="uniqueidentifier" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Testimony">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductCount" Type="int" Nullable="false" />
+    <Property Name="PackingType" Type="nvarchar" Nullable="false" />
+    <Property Name="PureWeight" Type="decimal" Nullable="false" />
+    <Property Name="RealWeight" Type="decimal" Nullable="false" />
+    <Property Name="RequestNumber" Type="nvarchar" Nullable="false" />
+    <Property Name="RequestDate" Type="nvarchar" Nullable="false" />
+    <Property Name="HeaderNumber" Type="nvarchar" Nullable="false" />
+    <Property Name="HeaderDate" Type="nvarchar" Nullable="false" />
+    <Property Name="Product_Id" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TestimonyDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Value" Type="decimal" Nullable="false" />
+    <Property Name="IsInternal" Type="bit" Nullable="false" />
+    <Property Name="Weight" Type="decimal" Nullable="false" />
+    <Property Name="Testimony_Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="WarehouseBill_Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Material_Id" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ExternalProductMaterial">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Value" Type="decimal" Nullable="false" />
+    <Property Name="Pert" Type="decimal" Nullable="false" DefaultValue="0" />
+    <Property Name="Product_Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Material_Id" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <Association Name="InternalMaterialProductMaterial">
+    <End Role="Material" Type="SesaModel.Store.Material" Multiplicity="1" />
+    <End Role="ProductMaterialTable" Type="SesaModel.Store.InternalProductMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Material">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductMaterialTable">
+        <PropertyRef Name="Material_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InternalProductProductMaterial">
+    <End Role="Product" Type="SesaModel.Store.Product" Multiplicity="1" />
+    <End Role="ProductMaterialTable" Type="SesaModel.Store.InternalProductMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductMaterialTable">
+        <PropertyRef Name="Product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UnitMaterial">
+    <End Role="Unit" Type="SesaModel.Store.Unit" Multiplicity="1" />
+    <End Role="Material" Type="SesaModel.Store.Material" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Material">
+        <PropertyRef Name="Unit_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MaterialWarehouseBillDetail">
+    <End Role="Material" Type="SesaModel.Store.Material" Multiplicity="1" />
+    <End Role="WarehouseBillDetail" Type="SesaModel.Store.WarehouseBillDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Material">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WarehouseBillDetail">
+        <PropertyRef Name="Material_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="WarehouseBillWarehouseBillDetail">
+    <End Role="WarehouseBill" Type="SesaModel.Store.WarehouseBill" Multiplicity="1" />
+    <End Role="WarehouseBillDetail" Type="SesaModel.Store.WarehouseBillDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WarehouseBill">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WarehouseBillDetail">
+        <PropertyRef Name="WarehouseBill_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UnitWarehouseBillDetail">
+    <End Role="Unit" Type="SesaModel.Store.Unit" Multiplicity="0..1" />
+    <End Role="WarehouseBillDetail" Type="SesaModel.Store.WarehouseBillDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WarehouseBillDetail">
+        <PropertyRef Name="Unit_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductProductionTestimony">
+    <End Role="Product" Type="SesaModel.Store.Product" Multiplicity="1" />
+    <End Role="ProductionTestimony" Type="SesaModel.Store.Testimony" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductionTestimony">
+        <PropertyRef Name="Product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TestimonyTestimonyDetail">
+    <End Role="Testimony" Type="SesaModel.Store.Testimony" Multiplicity="1" />
+    <End Role="TestimonyDetail" Type="SesaModel.Store.TestimonyDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Testimony">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TestimonyDetail">
+        <PropertyRef Name="Testimony_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="WarehouseBillTestimonyDetail">
+    <End Role="WarehouseBill" Type="SesaModel.Store.WarehouseBill" Multiplicity="1" />
+    <End Role="TestimonyDetail" Type="SesaModel.Store.TestimonyDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WarehouseBill">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TestimonyDetail">
+        <PropertyRef Name="WarehouseBill_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MaterialTestimonyDetail">
+    <End Role="Material" Type="SesaModel.Store.Material" Multiplicity="1" />
+    <End Role="TestimonyDetail" Type="SesaModel.Store.TestimonyDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Material">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TestimonyDetail">
+        <PropertyRef Name="Material_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductExternalProductMaterial">
+    <End Role="Product" Type="SesaModel.Store.Product" Multiplicity="1" />
+    <End Role="ExternalProductMaterial" Type="SesaModel.Store.ExternalProductMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ExternalProductMaterial">
+        <PropertyRef Name="Product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MaterialExternalProductMaterial">
+    <End Role="Material" Type="SesaModel.Store.Material" Multiplicity="1" />
+    <End Role="ExternalProductMaterial" Type="SesaModel.Store.ExternalProductMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Material">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ExternalProductMaterial">
+        <PropertyRef Name="Material_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BaseUnit_DerivedUnit">
+    <End Role="Unit" Type="SesaModel.Store.Unit" Multiplicity="0..1" />
+    <End Role="Unit1" Type="SesaModel.Store.Unit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Unit1">
+        <PropertyRef Name="BaseUnit_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="SesaModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="SesaModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Product" EntityType="SesaModel.Product" />
+          <EntitySet Name="Material" EntityType="SesaModel.Material" />
+          <EntitySet Name="InternalProductMaterial" EntityType="SesaModel.InternalProductMaterial" />
+          <AssociationSet Name="InternalMaterialProductMaterial" Association="SesaModel.InternalMaterialProductMaterial">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="ProductMaterialTable" EntitySet="InternalProductMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="InternalProductProductMaterial" Association="SesaModel.InternalProductProductMaterial">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductMaterialTable" EntitySet="InternalProductMaterial" />
+          </AssociationSet>
+          <EntitySet Name="Unit" EntityType="SesaModel.Unit" />
+          <AssociationSet Name="UnitMaterial" Association="SesaModel.UnitMaterial">
+            <End EntitySet="Unit" Role="Unit" />
+            <End EntitySet="Material" Role="Material" />
+          </AssociationSet>
+          <EntitySet Name="WarehouseBill" EntityType="SesaModel.WarehouseBill" />
+          <EntitySet Name="WarehouseBillDetail" EntityType="SesaModel.WarehouseBillDetail" />
+          <AssociationSet Name="MaterialWarehouseBillDetail" Association="SesaModel.MaterialWarehouseBillDetail">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="WarehouseBillDetail" EntitySet="WarehouseBillDetail" />
+          </AssociationSet>
+          <AssociationSet Name="WarehouseBillWarehouseBillDetail" Association="SesaModel.WarehouseBillWarehouseBillDetail">
+            <End Role="WarehouseBill" EntitySet="WarehouseBill" />
+            <End Role="WarehouseBillDetail" EntitySet="WarehouseBillDetail" />
+          </AssociationSet>
+          <AssociationSet Name="UnitWarehouseBillDetail" Association="SesaModel.UnitWarehouseBillDetail">
+            <End Role="Unit" EntitySet="Unit" />
+            <End Role="WarehouseBillDetail" EntitySet="WarehouseBillDetail" />
+          </AssociationSet>
+          <EntitySet Name="Testimony" EntityType="SesaModel.Testimony" />
+          <AssociationSet Name="ProductTestimony" Association="SesaModel.ProductProductionTestimony">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductionTestimony" EntitySet="Testimony" />
+          </AssociationSet>
+          <EntitySet Name="TestimonyDetail" EntityType="SesaModel.TestimonyDetail" />
+          <AssociationSet Name="TestimonyTestimonyDetail" Association="SesaModel.TestimonyTestimonyDetail">
+            <End Role="Testimony" EntitySet="Testimony" />
+            <End Role="TestimonyDetail" EntitySet="TestimonyDetail" />
+          </AssociationSet>
+          <AssociationSet Name="WarehouseBillTestimonyDetail" Association="SesaModel.WarehouseBillTestimonyDetail">
+            <End Role="WarehouseBill" EntitySet="WarehouseBill" />
+            <End Role="TestimonyDetail" EntitySet="TestimonyDetail" />
+          </AssociationSet>
+          <AssociationSet Name="MaterialTestimonyDetail" Association="SesaModel.MaterialTestimonyDetail">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="TestimonyDetail" EntitySet="TestimonyDetail" />
+          </AssociationSet>
+          <EntitySet Name="ExternalProductMaterial" EntityType="SesaModel.ExternalProductMaterial" />
+          <AssociationSet Name="ProductExternalProductMaterial" Association="SesaModel.ProductExternalProductMaterial">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ExternalProductMaterial" EntitySet="ExternalProductMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="MaterialExternalProductMaterial" Association="SesaModel.MaterialExternalProductMaterial">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="ExternalProductMaterial" EntitySet="ExternalProductMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BaseUnit_DerivedUnit" Association="SesaModel.FK_BaseUnit_DerivedUnit">
+            <End Role="Unit" EntitySet="Unit" />
+            <End Role="Unit1" EntitySet="Unit" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="String" Name="Caption" Nullable="false" />
+          <Property Type="Decimal" Name="ValidInputPercent" Nullable="false" />
+          <Property Type="Decimal" Name="AddedValuePercent" Nullable="false" />
+          <NavigationProperty Name="InternalProductMaterials" Relationship="SesaModel.InternalProductProductMaterial" FromRole="Product" ToRole="ProductMaterialTable" />
+          <NavigationProperty Name="Testimonies" Relationship="SesaModel.ProductProductionTestimony" FromRole="Product" ToRole="ProductionTestimony" />
+          <NavigationProperty Name="ExternalProductMaterial" Relationship="SesaModel.ProductExternalProductMaterial" FromRole="Product" ToRole="ExternalProductMaterial" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="String" Name="Caption" Nullable="false" />
+          <Property Type="String" Name="GramFormula" Nullable="true" />
+          <NavigationProperty Name="InternalProductMaterials" Relationship="SesaModel.InternalMaterialProductMaterial" FromRole="Material" ToRole="ProductMaterialTable" />
+          <NavigationProperty Name="Unit" Relationship="SesaModel.UnitMaterial" FromRole="Material" ToRole="Unit" />
+          <NavigationProperty Name="WarehouseBillDetails" Relationship="SesaModel.MaterialWarehouseBillDetail" FromRole="Material" ToRole="WarehouseBillDetail" />
+          <NavigationProperty Name="TestimonyDetails" Relationship="SesaModel.MaterialTestimonyDetail" FromRole="Material" ToRole="TestimonyDetail" />
+          <NavigationProperty Name="ExternalProductMaterial" Relationship="SesaModel.MaterialExternalProductMaterial" FromRole="Material" ToRole="ExternalProductMaterial" />
+          <Property Type="Boolean" Name="IsFloatValue" Nullable="false" />
+          <Property Type="Boolean" Name="IsPackingType" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InternalProductMaterial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="Decimal" Name="Value" Nullable="false" />
+          <Property Type="Decimal" Name="Pert" Nullable="false" DefaultValue="0" />
+          <NavigationProperty Name="Material" Relationship="SesaModel.InternalMaterialProductMaterial" FromRole="ProductMaterialTable" ToRole="Material" />
+          <NavigationProperty Name="Product" Relationship="SesaModel.InternalProductProductMaterial" FromRole="ProductMaterialTable" ToRole="Product" />
+        </EntityType>
+        <Association Name="InternalMaterialProductMaterial">
+          <End Type="SesaModel.Material" Role="Material" Multiplicity="1" />
+          <End Type="SesaModel.InternalProductMaterial" Role="ProductMaterialTable" Multiplicity="*" />
+        </Association>
+        <Association Name="InternalProductProductMaterial">
+          <End Type="SesaModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="SesaModel.InternalProductMaterial" Role="ProductMaterialTable" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="String" Name="Symbol" Nullable="false" />
+          <Property Type="String" Name="Caption" Nullable="false" />
+          <Property Type="String" Name="BaseCoefficient" Nullable="true" />
+          <NavigationProperty Name="Materials" Relationship="SesaModel.UnitMaterial" FromRole="Unit" ToRole="Material" />
+          <NavigationProperty Name="WarehouseBillDetails" Relationship="SesaModel.UnitWarehouseBillDetail" FromRole="Unit" ToRole="WarehouseBillDetail" />
+          <Property Name="BaseUnit_Id" Type="Guid" Nullable="true" />
+          <NavigationProperty Name="DerivedUnits" Relationship="SesaModel.FK_BaseUnit_DerivedUnit" FromRole="Unit" ToRole="Unit1" />
+          <NavigationProperty Name="BaseUnit" Relationship="SesaModel.FK_BaseUnit_DerivedUnit" FromRole="Unit1" ToRole="Unit" />
+        </EntityType>
+        <Association Name="UnitMaterial">
+          <End Type="SesaModel.Unit" Multiplicity="1" Role="Unit" />
+          <End Type="SesaModel.Material" Multiplicity="*" Role="Material" />
+        </Association>
+        <EntityType Name="WarehouseBill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="String" Name="RowNumber" Nullable="false" />
+          <Property Type="String" Name="EmissionDate" Nullable="false" />
+          <NavigationProperty Name="WarehouseBillDetails" Relationship="SesaModel.WarehouseBillWarehouseBillDetail" FromRole="WarehouseBill" ToRole="WarehouseBillDetail" />
+          <NavigationProperty Name="TestimonyDetails" Relationship="SesaModel.WarehouseBillTestimonyDetail" FromRole="WarehouseBill" ToRole="TestimonyDetail" />
+          <Property Type="Boolean" Name="IsInternal" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WarehouseBillDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Material" Relationship="SesaModel.MaterialWarehouseBillDetail" FromRole="WarehouseBillDetail" ToRole="Material" />
+          <NavigationProperty Name="WarehouseBill" Relationship="SesaModel.WarehouseBillWarehouseBillDetail" FromRole="WarehouseBillDetail" ToRole="WarehouseBill" />
+          <Property Type="Decimal" Name="Value" Nullable="false" />
+          <Property Type="Decimal" Name="Weight" Nullable="false" />
+          <NavigationProperty Name="Unit" Relationship="SesaModel.UnitWarehouseBillDetail" FromRole="WarehouseBillDetail" ToRole="Unit" />
+        </EntityType>
+        <Association Name="MaterialWarehouseBillDetail">
+          <End Type="SesaModel.Material" Role="Material" Multiplicity="1" />
+          <End Type="SesaModel.WarehouseBillDetail" Role="WarehouseBillDetail" Multiplicity="*" />
+        </Association>
+        <Association Name="WarehouseBillWarehouseBillDetail">
+          <End Type="SesaModel.WarehouseBill" Role="WarehouseBill" Multiplicity="1" />
+          <End Type="SesaModel.WarehouseBillDetail" Role="WarehouseBillDetail" Multiplicity="*" />
+        </Association>
+        <Association Name="UnitWarehouseBillDetail">
+          <End Type="SesaModel.Unit" Role="Unit" Multiplicity="0..1" />
+          <End Type="SesaModel.WarehouseBillDetail" Role="WarehouseBillDetail" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Testimony">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Product" Relationship="SesaModel.ProductProductionTestimony" FromRole="ProductionTestimony" ToRole="Product" />
+          <Property Type="Int32" Name="ProductCount" Nullable="false" />
+          <Property Type="String" Name="PackingType" Nullable="false" />
+          <Property Type="Decimal" Name="PureWeight" Nullable="false" />
+          <Property Type="Decimal" Name="RealWeight" Nullable="false" />
+          <Property Type="String" Name="RequestNumber" Nullable="false" />
+          <Property Type="String" Name="RequestDate" Nullable="false" />
+          <Property Type="String" Name="HeaderNumber" Nullable="false" />
+          <Property Type="String" Name="HeaderDate" Nullable="false" />
+          <NavigationProperty Name="TestimonyDetails" Relationship="SesaModel.TestimonyTestimonyDetail" FromRole="Testimony" ToRole="TestimonyDetail" />
+        </EntityType>
+        <Association Name="ProductProductionTestimony">
+          <End Type="SesaModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="SesaModel.Testimony" Role="ProductionTestimony" Multiplicity="*" />
+        </Association>
+        <EntityType Name="TestimonyDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Testimony" Relationship="SesaModel.TestimonyTestimonyDetail" FromRole="TestimonyDetail" ToRole="Testimony" />
+          <NavigationProperty Name="WarehouseBill" Relationship="SesaModel.WarehouseBillTestimonyDetail" FromRole="TestimonyDetail" ToRole="WarehouseBill" />
+          <Property Type="Decimal" Name="Value" Nullable="false" />
+          <Property Type="Boolean" Name="IsInternal" Nullable="false" />
+          <Property Type="Decimal" Name="Weight" Nullable="false" />
+          <NavigationProperty Name="Material" Relationship="SesaModel.MaterialTestimonyDetail" FromRole="TestimonyDetail" ToRole="Material" />
+        </EntityType>
+        <Association Name="TestimonyTestimonyDetail">
+          <End Type="SesaModel.Testimony" Role="Testimony" Multiplicity="1" />
+          <End Type="SesaModel.TestimonyDetail" Role="TestimonyDetail" Multiplicity="*" />
+        </Association>
+        <Association Name="WarehouseBillTestimonyDetail">
+          <End Type="SesaModel.WarehouseBill" Role="WarehouseBill" Multiplicity="1" />
+          <End Type="SesaModel.TestimonyDetail" Role="TestimonyDetail" Multiplicity="*" />
+        </Association>
+        <Association Name="MaterialTestimonyDetail">
+          <End Type="SesaModel.Material" Role="Material" Multiplicity="1" />
+          <End Type="SesaModel.TestimonyDetail" Role="TestimonyDetail" Multiplicity="*" />
+        </Association>
+        <EntityType Name="ExternalProductMaterial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="Decimal" Name="Value" Nullable="false" />
+          <Property Type="Decimal" Name="Pert" Nullable="false" DefaultValue="0" />
+          <NavigationProperty Name="Product" Relationship="SesaModel.ProductExternalProductMaterial" FromRole="ExternalProductMaterial" ToRole="Product" />
+          <NavigationProperty Name="Material" Relationship="SesaModel.MaterialExternalProductMaterial" FromRole="ExternalProductMaterial" ToRole="Material" />
+        </EntityType>
+        <Association Name="ProductExternalProductMaterial">
+          <End Type="SesaModel.Product" Role="Product" Multiplicity="1" >
+          </End>
+          <End Type="SesaModel.ExternalProductMaterial" Role="ExternalProductMaterial" Multiplicity="*" />
+        </Association>
+        <Association Name="MaterialExternalProductMaterial">
+          <End Type="SesaModel.Material" Role="Material" Multiplicity="1" />
+          <End Type="SesaModel.ExternalProductMaterial" Role="ExternalProductMaterial" Multiplicity="*" >
+          </End>
+        </Association>
+        <Association Name="FK_BaseUnit_DerivedUnit">
+          <End Type="SesaModel.Unit" Role="Unit" Multiplicity="0..1" />
+          <End Type="SesaModel.Unit" Role="Unit1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Unit1">
+              <PropertyRef Name="BaseUnit_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SesaModelStoreContainer" CdmEntityContainer="SesaModelContainer">
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="IsTypeOf(SesaModel.Product)">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Caption" ColumnName="Caption" />
+          <ScalarProperty Name="ValidInputPercent" ColumnName="ValidInputPercent" />
+          <ScalarProperty Name="AddedValuePercent" ColumnName="AddedValuePercent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Material">
+      <EntityTypeMapping TypeName="IsTypeOf(SesaModel.Material)">
+        <MappingFragment StoreEntitySet="Material">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Caption" ColumnName="Caption" />
+          <ScalarProperty Name="GramFormula" ColumnName="GramFormula" />
+          <ScalarProperty Name="IsFloatValue" ColumnName="IsFloatValue" />
+          <ScalarProperty Name="IsPackingType" ColumnName="IsPackingType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InternalProductMaterial">
+      <EntityTypeMapping TypeName="IsTypeOf(SesaModel.InternalProductMaterial)">
+        <MappingFragment StoreEntitySet="InternalProductMaterial">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Pert" ColumnName="Pert" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Unit">
+      <EntityTypeMapping TypeName="IsTypeOf(SesaModel.Unit)">
+        <MappingFragment StoreEntitySet="Unit">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+          <ScalarProperty Name="Caption" ColumnName="Caption" />
+          <ScalarProperty Name="BaseCoefficient" ColumnName="BaseCoefficient" />
+          <ScalarProperty Name="BaseUnit_Id" ColumnName="BaseUnit_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WarehouseBill">
+      <EntityTypeMapping TypeName="IsTypeOf(SesaModel.WarehouseBill)">
+        <MappingFragment StoreEntitySet="WarehouseBill">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+          <ScalarProperty Name="EmissionDate" ColumnName="EmissionDate" />
+          <ScalarProperty Name="IsInternal" ColumnName="IsInternal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WarehouseBillDetail">
+      <EntityTypeMapping TypeName="IsTypeOf(SesaModel.WarehouseBillDetail)">
+        <MappingFragment StoreEntitySet="WarehouseBillDetail">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Testimony">
+      <EntityTypeMapping TypeName="IsTypeOf(SesaModel.Testimony)">
+        <MappingFragment StoreEntitySet="Testimony">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProductCount" ColumnName="ProductCount" />
+          <ScalarProperty Name="PackingType" ColumnName="PackingType" />
+          <ScalarProperty Name="PureWeight" ColumnName="PureWeight" />
+          <ScalarProperty Name="RealWeight" ColumnName="RealWeight" />
+          <ScalarProperty Name="RequestNumber" ColumnName="RequestNumber" />
+          <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+          <ScalarProperty Name="HeaderNumber" ColumnName="HeaderNumber" />
+          <ScalarProperty Name="HeaderDate" ColumnName="HeaderDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestimonyDetail">
+      <EntityTypeMapping TypeName="IsTypeOf(SesaModel.TestimonyDetail)">
+        <MappingFragment StoreEntitySet="TestimonyDetail">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="IsInternal" ColumnName="IsInternal" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExternalProductMaterial">
+      <EntityTypeMapping TypeName="IsTypeOf(SesaModel.ExternalProductMaterial)">
+        <MappingFragment StoreEntitySet="ExternalProductMaterial">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Pert" ColumnName="Pert" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="InternalMaterialProductMaterial" TypeName="SesaModel.InternalMaterialProductMaterial" StoreEntitySet="InternalProductMaterial">
+      <EndProperty Name="Material">
+        <ScalarProperty Name="Id" ColumnName="Material_Id" />
+      </EndProperty>
+      <EndProperty Name="ProductMaterialTable">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="InternalProductProductMaterial" TypeName="SesaModel.InternalProductProductMaterial" StoreEntitySet="InternalProductMaterial">
+      <EndProperty Name="Product">
+        <ScalarProperty Name="Id" ColumnName="Product_Id" />
+      </EndProperty>
+      <EndProperty Name="ProductMaterialTable">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UnitMaterial" TypeName="SesaModel.UnitMaterial" StoreEntitySet="Material">
+      <EndProperty Name="Unit">
+        <ScalarProperty Name="Id" ColumnName="Unit_Id" />
+      </EndProperty>
+      <EndProperty Name="Material">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MaterialWarehouseBillDetail" TypeName="SesaModel.MaterialWarehouseBillDetail" StoreEntitySet="WarehouseBillDetail">
+      <EndProperty Name="Material">
+        <ScalarProperty Name="Id" ColumnName="Material_Id" />
+      </EndProperty>
+      <EndProperty Name="WarehouseBillDetail">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="WarehouseBillWarehouseBillDetail" TypeName="SesaModel.WarehouseBillWarehouseBillDetail" StoreEntitySet="WarehouseBillDetail">
+      <EndProperty Name="WarehouseBill">
+        <ScalarProperty Name="Id" ColumnName="WarehouseBill_Id" />
+      </EndProperty>
+      <EndProperty Name="WarehouseBillDetail">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UnitWarehouseBillDetail" TypeName="SesaModel.UnitWarehouseBillDetail" StoreEntitySet="WarehouseBillDetail">
+      <EndProperty Name="Unit">
+        <ScalarProperty Name="Id" ColumnName="Unit_Id" />
+      </EndProperty>
+      <EndProperty Name="WarehouseBillDetail">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Unit_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ProductTestimony" TypeName="SesaModel.ProductProductionTestimony" StoreEntitySet="Testimony">
+      <EndProperty Name="Product">
+        <ScalarProperty Name="Id" ColumnName="Product_Id" />
+      </EndProperty>
+      <EndProperty Name="ProductionTestimony">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TestimonyTestimonyDetail" TypeName="SesaModel.TestimonyTestimonyDetail" StoreEntitySet="TestimonyDetail">
+      <EndProperty Name="Testimony">
+        <ScalarProperty Name="Id" ColumnName="Testimony_Id" />
+      </EndProperty>
+      <EndProperty Name="TestimonyDetail">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="WarehouseBillTestimonyDetail" TypeName="SesaModel.WarehouseBillTestimonyDetail" StoreEntitySet="TestimonyDetail">
+      <EndProperty Name="WarehouseBill">
+        <ScalarProperty Name="Id" ColumnName="WarehouseBill_Id" />
+      </EndProperty>
+      <EndProperty Name="TestimonyDetail">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MaterialTestimonyDetail" TypeName="SesaModel.MaterialTestimonyDetail" StoreEntitySet="TestimonyDetail">
+      <EndProperty Name="Material">
+        <ScalarProperty Name="Id" ColumnName="Material_Id" />
+      </EndProperty>
+      <EndProperty Name="TestimonyDetail">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ProductExternalProductMaterial" TypeName="SesaModel.ProductExternalProductMaterial" StoreEntitySet="ExternalProductMaterial">
+      <EndProperty Name="Product">
+        <ScalarProperty Name="Id" ColumnName="Product_Id" />
+      </EndProperty>
+      <EndProperty Name="ExternalProductMaterial">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MaterialExternalProductMaterial" TypeName="SesaModel.MaterialExternalProductMaterial" StoreEntitySet="ExternalProductMaterial">
+      <EndProperty Name="Material">
+        <ScalarProperty Name="Id" ColumnName="Material_Id" />
+      </EndProperty>
+      <EndProperty Name="ExternalProductMaterial">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="SesaModel" ZoomLevel="82" >
+        <EntityTypeShape EntityType="SesaModel.Product" Width="1.5" PointX="3.875" PointY="3" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="SesaModel.Material" Width="1.5" PointX="6.625" PointY="2.375" Height="2.5571907552083326" />
+        <EntityTypeShape EntityType="SesaModel.InternalProductMaterial" Width="1.5" PointX="5.375" PointY="5.125" Height="1.9802864583333326" />
+        <AssociationConnector Association="SesaModel.InternalMaterialProductMaterial">
+          <ConnectorPoint PointX="7.4531252499999994" PointY="4.9321907552083326" />
+          <ConnectorPoint PointX="7.4531252499999994" PointY="6.1151432291666659" />
+          <ConnectorPoint PointX="7.2473934583333328" PointY="6.115143229166665" />
+          <ConnectorPoint PointX="7.0807267916666667" PointY="6.1151432291666659" />
+          <ConnectorPoint PointX="6.875" PointY="6.1151432291666659" />
+        </AssociationConnector>
+        <AssociationConnector Association="SesaModel.InternalProductProductMaterial">
+          <ConnectorPoint PointX="4.6249994999999995" PointY="5.3648893229166665" />
+          <ConnectorPoint PointX="4.6249994999999995" PointY="6.1151432291666659" />
+          <ConnectorPoint PointX="5.375" PointY="6.1151432291666659" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SesaModel.Unit" Width="1.5" PointX="7.75" PointY="5.25" Height="2.2496956380208335" />
+        <AssociationConnector Association="SesaModel.UnitMaterial">
+          <ConnectorPoint PointX="7.9375" PointY="5.25" />
+          <ConnectorPoint PointX="7.9375" PointY="4.9321907552083326" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SesaModel.WarehouseBill" Width="1.5" PointX="0.5" PointY="6.875" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="SesaModel.WarehouseBillDetail" Width="1.5" PointX="4.625" PointY="7.25" Height="2.1725878906249996" />
+        <AssociationConnector Association="SesaModel.MaterialWarehouseBillDetail">
+          <ConnectorPoint PointX="7.164060125" PointY="4.9321907552083326" />
+          <ConnectorPoint PointX="7.164060125" PointY="8.7422900390625" />
+          <ConnectorPoint PointX="6.125" PointY="8.7422900390625" />
+        </AssociationConnector>
+        <AssociationConnector Association="SesaModel.WarehouseBillWarehouseBillDetail">
+          <ConnectorPoint PointX="2" PointY="8.1487939453125" />
+          <ConnectorPoint PointX="4.625" PointY="8.1487939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="SesaModel.UnitWarehouseBillDetail">
+          <ConnectorPoint PointX="7.75" PointY="7.62474609375" />
+          <ConnectorPoint PointX="7.2473934583333328" PointY="7.6247460937499989" />
+          <ConnectorPoint PointX="7.0807267916666667" PointY="7.62474609375" />
+          <ConnectorPoint PointX="6.125" PointY="7.62474609375" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SesaModel.Testimony" Width="1.5" PointX="1.75" PointY="3.125" Height="3.1340950520833335" />
+        <AssociationConnector Association="SesaModel.ProductProductionTestimony">
+          <ConnectorPoint PointX="3.875" PointY="4.2449446614583337" />
+          <ConnectorPoint PointX="3.25" PointY="4.2449446614583337" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SesaModel.TestimonyDetail" Width="1.5" PointX="4" PointY="0.5" Height="1.9210009765625" />
+        <AssociationConnector Association="SesaModel.TestimonyTestimonyDetail">
+          <ConnectorPoint PointX="2.5" PointY="3.125" />
+          <ConnectorPoint PointX="2.5" PointY="1.6824446614583337" />
+          <ConnectorPoint PointX="4" PointY="1.6824446614583337" />
+        </AssociationConnector>
+        <AssociationConnector Association="SesaModel.WarehouseBillTestimonyDetail" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.09375" PointY="6.875" />
+          <ConnectorPoint PointX="1.09375" PointY="2.3049194921875014" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="2.3049194921875009" />
+          <ConnectorPoint PointX="2.5833333333333335" PointY="2.3049194921875014" />
+          <ConnectorPoint PointX="4" PointY="2.3049194921875014" />
+        </AssociationConnector>
+        <AssociationConnector Association="SesaModel.MaterialTestimonyDetail">
+          <ConnectorPoint PointX="6.625" PointY="2.7038378906250005" />
+          <ConnectorPoint PointX="5.5" PointY="2.7038378906250005" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SesaModel.ExternalProductMaterial" Width="1.5" PointX="6.25" PointY="0.5" Height="1.787985026041667" />
+        <AssociationConnector Association="SesaModel.ProductExternalProductMaterial">
+          <ConnectorPoint PointX="4.625" PointY="3" />
+          <ConnectorPoint PointX="4.625" PointY="2.9273893229166674" />
+          <ConnectorPoint PointX="5.5625" PointY="2.9273893229166674" />
+          <ConnectorPoint PointX="5.5625" PointY="1.3939925130208333" />
+          <ConnectorPoint PointX="6.25" PointY="1.3939925130208333" />
+        </AssociationConnector>
+        <AssociationConnector Association="SesaModel.MaterialExternalProductMaterial">
+          <ConnectorPoint PointX="8.125" PointY="3.6535953776041663" />
+          <ConnectorPoint PointX="8.5" PointY="3.6535953776041663" />
+          <ConnectorPoint PointX="8.5" PointY="1.4062505" />
+          <ConnectorPoint PointX="7.75" PointY="1.4062505" />
+        </AssociationConnector>
+        <AssociationConnector Association="SesaModel.FK_BaseUnit_DerivedUnit" >
+          <ConnectorPoint PointX="8.2819230769230767" PointY="7.9994921875" />
+          <ConnectorPoint PointX="8.2819230769230767" PointY="8.2494921875" />
+          <ConnectorPoint PointX="8.72846153846154" PointY="8.2494921875" />
+          <ConnectorPoint PointX="8.72846153846154" PointY="7.9994921875" />
+        </AssociationConnector>
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,4 @@
+﻿
+namespace Sesa.Desktop.Common
+{
+}

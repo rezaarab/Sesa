@@ -1,0 +1,413 @@
+
+-- --------------------------------------------------
+-- Entity Designer DDL Script for SQL Server Compact Edition
+-- --------------------------------------------------
+-- Date Created: 12/14/2013 00:45:43
+-- Generated from EDMX file: D:\REZA\Project\SESA\Sesa.Desktop\Models\SesaModel.edmx
+-- --------------------------------------------------
+
+
+-- --------------------------------------------------
+-- Dropping existing FOREIGN KEY constraints
+-- NOTE: if the constraint does not exist, an ignorable error will be reported.
+-- --------------------------------------------------
+
+    ALTER TABLE [InternalProductMaterial] DROP CONSTRAINT [FK_InternalMaterialProductMaterial];
+GO
+    ALTER TABLE [InternalProductMaterial] DROP CONSTRAINT [FK_InternalProductProductMaterial];
+GO
+    ALTER TABLE [Material] DROP CONSTRAINT [FK_UnitMaterial];
+GO
+    ALTER TABLE [WarehouseBillDetail] DROP CONSTRAINT [FK_MaterialWarehouseBillDetail];
+GO
+    ALTER TABLE [WarehouseBillDetail] DROP CONSTRAINT [FK_WarehouseBillWarehouseBillDetail];
+GO
+    ALTER TABLE [WarehouseBillDetail] DROP CONSTRAINT [FK_UnitWarehouseBillDetail];
+GO
+    ALTER TABLE [Testimony] DROP CONSTRAINT [FK_ProductProductionTestimony];
+GO
+    ALTER TABLE [TestimonyDetail] DROP CONSTRAINT [FK_TestimonyTestimonyDetail];
+GO
+    ALTER TABLE [TestimonyDetail] DROP CONSTRAINT [FK_WarehouseBillTestimonyDetail];
+GO
+    ALTER TABLE [TestimonyDetail] DROP CONSTRAINT [FK_MaterialTestimonyDetail];
+GO
+    ALTER TABLE [ExternalProductMaterial] DROP CONSTRAINT [FK_ProductExternalProductMaterial];
+GO
+    ALTER TABLE [ExternalProductMaterial] DROP CONSTRAINT [FK_MaterialExternalProductMaterial];
+GO
+    ALTER TABLE [Unit] DROP CONSTRAINT [FK_BaseUnit_DerivedUnit];
+GO
+
+-- --------------------------------------------------
+-- Dropping existing tables
+-- NOTE: if the table does not exist, an ignorable error will be reported.
+-- --------------------------------------------------
+
+    DROP TABLE [Product];
+GO
+    DROP TABLE [Material];
+GO
+    DROP TABLE [InternalProductMaterial];
+GO
+    DROP TABLE [Unit];
+GO
+    DROP TABLE [WarehouseBill];
+GO
+    DROP TABLE [WarehouseBillDetail];
+GO
+    DROP TABLE [Testimony];
+GO
+    DROP TABLE [TestimonyDetail];
+GO
+    DROP TABLE [ExternalProductMaterial];
+GO
+
+-- --------------------------------------------------
+-- Creating all tables
+-- --------------------------------------------------
+
+-- Creating table 'Product'
+CREATE TABLE [Product] (
+    [Id] uniqueidentifier  NOT NULL,
+    [Caption] nvarchar(4000)  NOT NULL,
+    [ValidInputPercent] decimal(18,2)  NOT NULL,
+    [AddedValuePercent] decimal(18,2)  NOT NULL
+);
+GO
+
+-- Creating table 'Material'
+CREATE TABLE [Material] (
+    [Id] uniqueidentifier  NOT NULL,
+    [Caption] nvarchar(4000)  NOT NULL,
+    [GramFormula] nvarchar(4000)  NULL,
+    [IsFloatValue] bit  NOT NULL,
+    [IsPackingType] bit  NOT NULL,
+    [Unit_Id] uniqueidentifier  NOT NULL
+);
+GO
+
+-- Creating table 'InternalProductMaterial'
+CREATE TABLE [InternalProductMaterial] (
+    [Id] uniqueidentifier  NOT NULL,
+    [Value] decimal(18,2)  NOT NULL,
+    [Pert] decimal(18,2)  NOT NULL,
+    [Material_Id] uniqueidentifier  NOT NULL,
+    [Product_Id] uniqueidentifier  NOT NULL
+);
+GO
+
+-- Creating table 'Unit'
+CREATE TABLE [Unit] (
+    [Id] uniqueidentifier  NOT NULL,
+    [Symbol] nvarchar(4000)  NOT NULL,
+    [Caption] nvarchar(4000)  NOT NULL,
+    [BaseCoefficient] nvarchar(4000)  NULL,
+    [BaseUnit_Id] uniqueidentifier  NULL
+);
+GO
+
+-- Creating table 'WarehouseBill'
+CREATE TABLE [WarehouseBill] (
+    [Id] uniqueidentifier  NOT NULL,
+    [RowNumber] nvarchar(4000)  NOT NULL,
+    [EmissionDate] nvarchar(4000)  NOT NULL,
+    [IsInternal] bit  NOT NULL
+);
+GO
+
+-- Creating table 'WarehouseBillDetail'
+CREATE TABLE [WarehouseBillDetail] (
+    [Id] uniqueidentifier  NOT NULL,
+    [Value] decimal(18,2)  NOT NULL,
+    [Weight] decimal(18,2)  NOT NULL,
+    [Material_Id] uniqueidentifier  NOT NULL,
+    [WarehouseBill_Id] uniqueidentifier  NOT NULL,
+    [Unit_Id] uniqueidentifier  NULL
+);
+GO
+
+-- Creating table 'Testimony'
+CREATE TABLE [Testimony] (
+    [Id] uniqueidentifier  NOT NULL,
+    [ProductCount] int  NOT NULL,
+    [PackingType] nvarchar(4000)  NOT NULL,
+    [PureWeight] decimal(18,2)  NOT NULL,
+    [RealWeight] decimal(18,2)  NOT NULL,
+    [RequestNumber] nvarchar(4000)  NOT NULL,
+    [RequestDate] nvarchar(4000)  NOT NULL,
+    [HeaderNumber] nvarchar(4000)  NOT NULL,
+    [HeaderDate] nvarchar(4000)  NOT NULL,
+    [Product_Id] uniqueidentifier  NOT NULL
+);
+GO
+
+-- Creating table 'TestimonyDetail'
+CREATE TABLE [TestimonyDetail] (
+    [Id] uniqueidentifier  NOT NULL,
+    [Value] decimal(18,2)  NOT NULL,
+    [IsInternal] bit  NOT NULL,
+    [Weight] decimal(18,2)  NOT NULL,
+    [Testimony_Id] uniqueidentifier  NOT NULL,
+    [WarehouseBill_Id] uniqueidentifier  NOT NULL,
+    [Material_Id] uniqueidentifier  NOT NULL
+);
+GO
+
+-- Creating table 'ExternalProductMaterial'
+CREATE TABLE [ExternalProductMaterial] (
+    [Id] uniqueidentifier  NOT NULL,
+    [Value] decimal(18,2)  NOT NULL,
+    [Pert] decimal(18,2)  NOT NULL,
+    [Product_Id] uniqueidentifier  NOT NULL,
+    [Material_Id] uniqueidentifier  NOT NULL
+);
+GO
+
+-- --------------------------------------------------
+-- Creating all PRIMARY KEY constraints
+-- --------------------------------------------------
+
+-- Creating primary key on [Id] in table 'Product'
+ALTER TABLE [Product]
+ADD CONSTRAINT [PK_Product]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'Material'
+ALTER TABLE [Material]
+ADD CONSTRAINT [PK_Material]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'InternalProductMaterial'
+ALTER TABLE [InternalProductMaterial]
+ADD CONSTRAINT [PK_InternalProductMaterial]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'Unit'
+ALTER TABLE [Unit]
+ADD CONSTRAINT [PK_Unit]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'WarehouseBill'
+ALTER TABLE [WarehouseBill]
+ADD CONSTRAINT [PK_WarehouseBill]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'WarehouseBillDetail'
+ALTER TABLE [WarehouseBillDetail]
+ADD CONSTRAINT [PK_WarehouseBillDetail]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'Testimony'
+ALTER TABLE [Testimony]
+ADD CONSTRAINT [PK_Testimony]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'TestimonyDetail'
+ALTER TABLE [TestimonyDetail]
+ADD CONSTRAINT [PK_TestimonyDetail]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'ExternalProductMaterial'
+ALTER TABLE [ExternalProductMaterial]
+ADD CONSTRAINT [PK_ExternalProductMaterial]
+    PRIMARY KEY ([Id] );
+GO
+
+-- --------------------------------------------------
+-- Creating all FOREIGN KEY constraints
+-- --------------------------------------------------
+
+-- Creating foreign key on [Material_Id] in table 'InternalProductMaterial'
+ALTER TABLE [InternalProductMaterial]
+ADD CONSTRAINT [FK_InternalMaterialProductMaterial]
+    FOREIGN KEY ([Material_Id])
+    REFERENCES [Material]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_InternalMaterialProductMaterial'
+CREATE INDEX [IX_FK_InternalMaterialProductMaterial]
+ON [InternalProductMaterial]
+    ([Material_Id]);
+GO
+
+-- Creating foreign key on [Product_Id] in table 'InternalProductMaterial'
+ALTER TABLE [InternalProductMaterial]
+ADD CONSTRAINT [FK_InternalProductProductMaterial]
+    FOREIGN KEY ([Product_Id])
+    REFERENCES [Product]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_InternalProductProductMaterial'
+CREATE INDEX [IX_FK_InternalProductProductMaterial]
+ON [InternalProductMaterial]
+    ([Product_Id]);
+GO
+
+-- Creating foreign key on [Unit_Id] in table 'Material'
+ALTER TABLE [Material]
+ADD CONSTRAINT [FK_UnitMaterial]
+    FOREIGN KEY ([Unit_Id])
+    REFERENCES [Unit]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UnitMaterial'
+CREATE INDEX [IX_FK_UnitMaterial]
+ON [Material]
+    ([Unit_Id]);
+GO
+
+-- Creating foreign key on [Material_Id] in table 'WarehouseBillDetail'
+ALTER TABLE [WarehouseBillDetail]
+ADD CONSTRAINT [FK_MaterialWarehouseBillDetail]
+    FOREIGN KEY ([Material_Id])
+    REFERENCES [Material]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MaterialWarehouseBillDetail'
+CREATE INDEX [IX_FK_MaterialWarehouseBillDetail]
+ON [WarehouseBillDetail]
+    ([Material_Id]);
+GO
+
+-- Creating foreign key on [WarehouseBill_Id] in table 'WarehouseBillDetail'
+ALTER TABLE [WarehouseBillDetail]
+ADD CONSTRAINT [FK_WarehouseBillWarehouseBillDetail]
+    FOREIGN KEY ([WarehouseBill_Id])
+    REFERENCES [WarehouseBill]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_WarehouseBillWarehouseBillDetail'
+CREATE INDEX [IX_FK_WarehouseBillWarehouseBillDetail]
+ON [WarehouseBillDetail]
+    ([WarehouseBill_Id]);
+GO
+
+-- Creating foreign key on [Unit_Id] in table 'WarehouseBillDetail'
+ALTER TABLE [WarehouseBillDetail]
+ADD CONSTRAINT [FK_UnitWarehouseBillDetail]
+    FOREIGN KEY ([Unit_Id])
+    REFERENCES [Unit]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UnitWarehouseBillDetail'
+CREATE INDEX [IX_FK_UnitWarehouseBillDetail]
+ON [WarehouseBillDetail]
+    ([Unit_Id]);
+GO
+
+-- Creating foreign key on [Product_Id] in table 'Testimony'
+ALTER TABLE [Testimony]
+ADD CONSTRAINT [FK_ProductProductionTestimony]
+    FOREIGN KEY ([Product_Id])
+    REFERENCES [Product]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ProductProductionTestimony'
+CREATE INDEX [IX_FK_ProductProductionTestimony]
+ON [Testimony]
+    ([Product_Id]);
+GO
+
+-- Creating foreign key on [Testimony_Id] in table 'TestimonyDetail'
+ALTER TABLE [TestimonyDetail]
+ADD CONSTRAINT [FK_TestimonyTestimonyDetail]
+    FOREIGN KEY ([Testimony_Id])
+    REFERENCES [Testimony]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TestimonyTestimonyDetail'
+CREATE INDEX [IX_FK_TestimonyTestimonyDetail]
+ON [TestimonyDetail]
+    ([Testimony_Id]);
+GO
+
+-- Creating foreign key on [WarehouseBill_Id] in table 'TestimonyDetail'
+ALTER TABLE [TestimonyDetail]
+ADD CONSTRAINT [FK_WarehouseBillTestimonyDetail]
+    FOREIGN KEY ([WarehouseBill_Id])
+    REFERENCES [WarehouseBill]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_WarehouseBillTestimonyDetail'
+CREATE INDEX [IX_FK_WarehouseBillTestimonyDetail]
+ON [TestimonyDetail]
+    ([WarehouseBill_Id]);
+GO
+
+-- Creating foreign key on [Material_Id] in table 'TestimonyDetail'
+ALTER TABLE [TestimonyDetail]
+ADD CONSTRAINT [FK_MaterialTestimonyDetail]
+    FOREIGN KEY ([Material_Id])
+    REFERENCES [Material]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MaterialTestimonyDetail'
+CREATE INDEX [IX_FK_MaterialTestimonyDetail]
+ON [TestimonyDetail]
+    ([Material_Id]);
+GO
+
+-- Creating foreign key on [Product_Id] in table 'ExternalProductMaterial'
+ALTER TABLE [ExternalProductMaterial]
+ADD CONSTRAINT [FK_ProductExternalProductMaterial]
+    FOREIGN KEY ([Product_Id])
+    REFERENCES [Product]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ProductExternalProductMaterial'
+CREATE INDEX [IX_FK_ProductExternalProductMaterial]
+ON [ExternalProductMaterial]
+    ([Product_Id]);
+GO
+
+-- Creating foreign key on [Material_Id] in table 'ExternalProductMaterial'
+ALTER TABLE [ExternalProductMaterial]
+ADD CONSTRAINT [FK_MaterialExternalProductMaterial]
+    FOREIGN KEY ([Material_Id])
+    REFERENCES [Material]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MaterialExternalProductMaterial'
+CREATE INDEX [IX_FK_MaterialExternalProductMaterial]
+ON [ExternalProductMaterial]
+    ([Material_Id]);
+GO
+
+-- Creating foreign key on [BaseUnit_Id] in table 'Unit'
+ALTER TABLE [Unit]
+ADD CONSTRAINT [FK_BaseUnit_DerivedUnit]
+    FOREIGN KEY ([BaseUnit_Id])
+    REFERENCES [Unit]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_BaseUnit_DerivedUnit'
+CREATE INDEX [IX_FK_BaseUnit_DerivedUnit]
+ON [Unit]
+    ([BaseUnit_Id]);
+GO
+
+-- --------------------------------------------------
+-- Script has ended
+-- --------------------------------------------------

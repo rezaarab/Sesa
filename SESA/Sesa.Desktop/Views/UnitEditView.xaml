@@ -1,0 +1,14 @@
+﻿<common:UserControlBase x:Class="Sesa.Desktop.Views.UnitEditView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:common="clr-namespace:Sesa.Desktop.Common"
+            DataContext="{Binding Source={StaticResource Locator}, Path=UnitEditViewModel}"
+             >
+  <StackPanel Orientation="Vertical">
+    <StackPanel Orientation="Horizontal">
+      <common:LayoutItem Label="عنوان" Width="{StaticResource DefaultUnitWidth}">
+        <TextBox Text="{Binding Entity.Caption,ValidatesOnDataErrors=True}" Style="{StaticResource TextBoxStyle}"/>
+      </common:LayoutItem>
+    </StackPanel>
+  </StackPanel>
+</common:UserControlBase>

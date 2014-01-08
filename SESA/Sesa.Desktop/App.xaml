@@ -1,0 +1,132 @@
+<Application x:Class="Sesa.Desktop.App" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:vm="clr-namespace:Sesa.Desktop.ViewModels" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+             xmlns:common="clr-namespace:Sesa.Desktop.Common" 
+             StartupUri="/Views/MainWindow.xaml" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             d1p1:Ignorable="d" 
+             xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             DispatcherUnhandledException="Application_DispatcherUnhandledException"
+             >
+  <Application.Resources>
+    <ResourceDictionary>
+      <sys:Double x:Key="FontSize0X">14</sys:Double>
+      <sys:Double x:Key="FontSize1X">16</sys:Double>
+      <sys:Double x:Key="FontSize2X">18</sys:Double>
+      <FontFamily x:Key="FontFamily1">Mj_Liner XL</FontFamily>
+      <FontFamily x:Key="FontFamily2">Mj_Liner XL</FontFamily>
+      <FontFamily x:Key="FontFamily3">Mj_Beirut</FontFamily>
+      <FontFamily x:Key="FontFamilyReport">Mj_Liner XL</FontFamily>
+      <sys:Double x:Key="DefaultUnitWidth">300</sys:Double>
+      <sys:Double x:Key="KeepUnitWidth">150</sys:Double>
+      <sys:Double x:Key="DefaultUnitHeight">30</sys:Double>
+      <vm:MvvmViewModelLocator x:Key="Locator" />
+      <common:ResourceConverter x:Key="ResourceConverter" />
+      <common:IsInternalResourceConverter x:Key="IsInternalResourceConverter" />
+      <common:ExternalProductMaterialIsFloatValueConverter x:Key="ExternalProductMaterialIsFloatValueConverter" />
+      <sys:String x:Key="ProductList">محصولات</sys:String>
+      <sys:String x:Key="ProductEdit">ویرایش محصولات</sys:String>
+      <sys:String x:Key="ProductSelect">انتخاب محصول</sys:String>
+      <sys:String x:Key="MaterialList">مواد</sys:String>
+      <sys:String x:Key="MaterialEdit">ویرایش مواد</sys:String>
+      <sys:String x:Key="MainWindow">سیستم کنترل تامین مواد اولیه محصولات</sys:String>
+      <sys:String x:Key="WarehouseBillList">انبار</sys:String>
+      <sys:String x:Key="WarehouseBillEdit">قبض انبار</sys:String>
+      <sys:String x:Key="TestimonyList">گواهی تولید</sys:String>
+      <sys:String x:Key="TestimonyEdit">ایجاد گواهی تولید</sys:String>
+      <sys:String x:Key="Cancel">انصراف</sys:String>
+      <sys:String x:Key="CancelQuestion">آیا می خواهید از انجام عملیات انصراف دهید؟</sys:String>
+      <sys:String x:Key="WarehouseBillRequired">هیچ قبض انباری یافت نشد</sys:String>
+      <sys:String x:Key="ReportList">گزارشات</sys:String>
+      <sys:String x:Key="Internal">داخلی</sys:String>
+      <sys:String x:Key="External">خارجی</sys:String>
+      <sys:String x:Key="New">جدید</sys:String>
+      <sys:String x:Key="Edit">ویرایش</sys:String>
+      <sys:String x:Key="Refresh">بارگذاری</sys:String>
+      <sys:String x:Key="Calculate">محاسبه</sys:String>
+      <sys:String x:Key="Save">ذخیره</sys:String>
+      <sys:String x:Key="WarehouseBillTestimonyReportViewModel">گزارش گواهی های صادر شده قبض انبار</sys:String>
+      <sys:String x:Key="MaterialWarehouseBillReportViewModel">گزارش مواد مصرف شده</sys:String>
+      <sys:String x:Key="UnitList">واحد ها</sys:String>
+      <sys:String x:Key="UnitEdit">ویرایش واحد</sys:String>
+      <sys:String x:Key="Close">بستن</sys:String>
+      <sys:String x:Key="Select">انتخاب</sys:String>
+      <sys:String x:Key="TestimonyAddedValueNumber"> 922/40/143 </sys:String>
+      <sys:String x:Key="TestimonyAddedValueDate"> 92/02/18 </sys:String>
+      <sys:String x:Key="TestimonyReportViewModel">چاپ گواهی تولید</sys:String>
+      <sys:String x:Key="Print">چاپ</sys:String>
+      <sys:String x:Key="ProductRequired">لطفا محصول را انتخاب نمایید</sys:String>
+      <sys:String x:Key="MaterialRequired">لطفا ماده را انتخاب نمایید</sys:String>
+      <sys:String x:Key="ValueGreaterThanZero">مقدار بایستی بزرگتر از صفر باشد</sys:String>
+      <sys:String x:Key="WeightGreaterThanZero">وزن بایستی بزرگتر از صفر باشد</sys:String>
+      <sys:String x:Key="CaptionRequired">لطفا عنوان را انتخاب نمایید</sys:String>
+      <sys:String x:Key="PercentNotValid">مقدار درصد بایستی بین 0 و 100 باشد</sys:String>
+      <sys:String x:Key="HeaderDateRequired">لطفا تاریخ گواهی را انتخاب نمایید</sys:String>
+      <sys:String x:Key="HeaderNumberRequired">لطفا شماره را وارد نمایید</sys:String>
+      <sys:String x:Key="PackingTypeRequired">لطفا نوع بسته بندی را انتخاب نمایید</sys:String>
+      <sys:String x:Key="ProductCountGreatThanZero">تعداد محصول بایستی بزرگتر از صفر باشد</sys:String>
+      <sys:String x:Key="PureWeightGreatThanZero">وزن خالص بایستی بزرگتر از صفر باشد</sys:String>
+      <sys:String x:Key="RealWeightGreatThanZero">وزن با ظرف بایستی بزرگتر از صفر باشد</sys:String>
+      <sys:String x:Key="RequestDateRequired">لطفا تاریخ درخواست را انتخاب نمایید</sys:String>
+      <sys:String x:Key="RequestNumberRequired">لطفا شماره در خواست را وارد نمایید</sys:String>
+      <sys:String x:Key="UnitRequired">لطفا واحد را انتخاب نمایید</sys:String>
+      <sys:String x:Key="EmissionDateRequired">لطفا تاریخ صدور را وارد نمایید</sys:String>
+      <sys:String x:Key="RowNumberRequired">لطفا شماره را وارد نمایید</sys:String>
+      <sys:String x:Key="WarehouseBillDetailsGreaterThanZero">قبض انبار بایستی حداقل یک آیتم داشته باشد</sys:String>
+      <sys:String x:Key="WarehouseBillDetailsError">در یکی از آیتم های انبار خطا وجود دارد</sys:String>
+      <sys:String x:Key="SameWarehouseBillDetailsError">یکی از آیتم های انبار تکراری است</sys:String>
+      <sys:String x:Key="TestimonyDetailsError">در یکی از آیتم های گواهی خطا وجود دارد</sys:String>
+      <sys:String x:Key="SameTestimonyDetailsError">یکی از آیتم های گواهی تکراری است</sys:String>
+      <sys:String x:Key="InternalProductMaterialsError">در یکی از مواد داخلی خطا وجود دارد</sys:String>
+      <sys:String x:Key="ExternalProductMaterialError">در یکی از مواد خارجی خطا وجود دارد</sys:String>
+      <sys:String x:Key="True">بلی</sys:String>
+      <sys:String x:Key="False">خیر</sys:String>
+
+      <Style x:Key="TabHeaderStyle" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Style.Setters> 
+          <Setter Property="FontFamily" Value="{StaticResource FontFamily3}"/>
+          <Setter Property="TextDecorations" Value="Underline"/>
+          <Setter Property="Margin" Value="1,1,32,1"/>
+        </Style.Setters>
+      </Style>
+      
+      <Style TargetType="TextBlock" x:Key="TextBlockStyle" BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Style.Setters>
+          <Setter Property="FontFamily" Value="{StaticResource FontFamily1}"/>
+          <Setter Property="FontSize" Value="{StaticResource FontSize1X}"/>
+        </Style.Setters>
+      </Style>
+
+      <Style TargetType="common:LayoutItem">
+        <Style.Setters>
+          <Setter Property="FontFamily" Value="{StaticResource FontFamily1}"/>
+          <Setter Property="FontSize" Value="{StaticResource FontSize1X}"/>
+        </Style.Setters>
+      </Style>
+
+      <Style TargetType="TextBox" x:Key="TextBoxStyle" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Style.Setters>
+          <Setter Property="FontFamily" Value="{StaticResource FontFamily1}"/>
+          <Setter Property="FontSize" Value="{StaticResource FontSize1X}"/>
+        </Style.Setters>
+      </Style>
+      
+      <Style TargetType="ComboBox" x:Key="ComboBoxStyle" BasedOn="{StaticResource {x:Type ComboBox}}">
+        <Style.Setters>
+          <Setter Property="FontFamily" Value="{StaticResource FontFamily1}"/>
+          <Setter Property="FontSize" Value="{StaticResource FontSize1X}"/>
+        </Style.Setters>
+      </Style>
+
+      <Style TargetType="TextBlock" x:Key="TextBlockStyle2" BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Style.Setters>
+          <Setter Property="FontFamily" Value="{StaticResource FontFamily2}"/>
+          <Setter Property="FontSize" Value="{StaticResource FontSize2X}"/>
+        </Style.Setters>
+      </Style>
+
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>

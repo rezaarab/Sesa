@@ -1,0 +1,470 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5D83CAFA-3CED-4644-A28E-2945B07AE014}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sesa.Desktop</RootNamespace>
+    <AssemblyName>Sesa.Desktop</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>c:\Deploy\Sesa\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://Sesa.codeplex.com/releases/clickonce/</InstallUrl>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\output\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>..\output\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Assets\Icon1.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisLogFile>..\output\Debug\Sesa.Desktop.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisLogFile>..\output\Release\Sesa.Desktop.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>3B366B7EC16FC771CFC3407F93067008A7BB9E78</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Sesa.Desktop_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FarsiLibrary.FX.Win, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\MVVM Framework\Calc\Calendar\Output\FarsiLibrary.FX.Win.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras.WPF4, Version=4.2.30.23173, Culture=neutral, PublicKeyToken=1673db7d5906b0ad, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\net40\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.WPF4, Version=4.2.30.23173, Culture=neutral, PublicKeyToken=63eb5c012e0b3c1c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\net40\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro">
+      <HintPath>..\packages\MahApps.Metro.0.10.1.1\lib\net40\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\WPFToolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Common\CommandObject.cs" />
+    <Compile Include="Common\ContentVisibilityConverter.cs" />
+    <Compile Include="Common\IsFloatValueConverter.cs" />
+    <Compile Include="Common\IsInternalResourceConverter.cs" />
+    <Compile Include="Common\PrintViewModelBase.cs" />
+    <Compile Include="Common\RdlcDto.cs" />
+    <Compile Include="Common\RdlcPrintViewer.xaml.cs">
+      <DependentUpon>RdlcPrintViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\RdlcPrintViewerViewModel.cs" />
+    <Compile Include="Common\RdlcReportSetting.cs" />
+    <Compile Include="Common\RdlcReportSourceBehavior.cs" />
+    <Compile Include="Common\SelectViewModelBase.cs" />
+    <Compile Include="Common\EditViewModelBase.cs" />
+    <Compile Include="Common\LayoutItem.xaml.cs">
+      <DependentUpon>LayoutItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\ListViewModelBase.cs" />
+    <Compile Include="Common\MenuCommandObject.cs" />
+    <Compile Include="Common\FormMode.cs" />
+    <Compile Include="Common\Messages.cs" />
+    <Compile Include="Common\ModalDialog.xaml.cs">
+      <DependentUpon>ModalDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\ModalDialogHelper.cs" />
+    <Compile Include="Common\MyViewModelBase.cs" />
+    <Compile Include="Common\NavigateContent.xaml.cs">
+      <DependentUpon>NavigateContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\ResourceConverter.cs" />
+    <Compile Include="Common\Tokens.cs" />
+    <Compile Include="Common\UserControlBase.cs" />
+    <Compile Include="Common\ResourceHelper.cs" />
+    <Compile Include="Models\DAL\TestimonyDetailDataService.cs" />
+    <Compile Include="Models\DAL\TestimonyDataService.cs" />
+    <Compile Include="Models\DAL\WarehouseBillDetailDataService.cs" />
+    <Compile Include="Models\DAL\InternalProductMaterialDataService.cs" />
+    <Compile Include="Models\DAL\WarehouseBillDataService.cs" />
+    <Compile Include="Models\DAL\UnitDataService.cs" />
+    <Compile Include="Models\DAL\ExternalProductMaterialDataService.cs" />
+    <Compile Include="Models\DAL\MaterialDataService.cs" />
+    <Compile Include="Models\Domain\TestimonyDetail.cs" />
+    <Compile Include="Models\Domain\Testimony.cs" />
+    <Compile Include="Models\Domain\WarehouseBillDetail.cs" />
+    <Compile Include="Models\Domain\InternalProductMaterial.cs" />
+    <Compile Include="Models\Domain\WarehouseBill.cs" />
+    <Compile Include="Models\Domain\Unit.cs" />
+    <Compile Include="Models\Domain\ExternalProductMaterial.cs" />
+    <Compile Include="Models\Domain\Material.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ViewModels\TestimonyReportViewModel.cs" />
+    <Compile Include="ViewModels\UnitEditViewModel.cs" />
+    <Compile Include="ViewModels\UnitListViewModel.cs" />
+    <Compile Include="ViewModels\MaterialWarehouseBillReportViewModel.cs" />
+    <Compile Include="ViewModels\TestimonyEditViewModel.cs" />
+    <Compile Include="ViewModels\ProductSelectViewModel.cs" />
+    <Compile Include="ViewModels\TestimonyListViewModel.cs" />
+    <Compile Include="ViewModels\WarehouseBillEditViewModel.cs" />
+    <Compile Include="ViewModels\WarehouseBillListViewModel.cs" />
+    <Compile Include="ViewModels\MaterialEditViewModel.cs" />
+    <Compile Include="ViewModels\MaterialListViewModel.cs" />
+    <Compile Include="ViewModels\ProductEditViewModel.cs" />
+    <Compile Include="ViewModels\WarehouseBillTestimonyReportViewModel.cs" />
+    <Compile Include="Views\TestimonyReportView.xaml.cs">
+      <DependentUpon>TestimonyReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UnitEditView.xaml.cs">
+      <DependentUpon>UnitEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UnitListView.xaml.cs">
+      <DependentUpon>UnitListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MaterialWarehouseBillReportView.xaml.cs">
+      <DependentUpon>MaterialWarehouseBillReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportListView.xaml.cs">
+      <DependentUpon>ReportListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TestimonyEditView.xaml.cs">
+      <DependentUpon>TestimonyEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProductSelectView.xaml.cs">
+      <DependentUpon>ProductSelectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TestimonyListView.xaml.cs">
+      <DependentUpon>TestimonyListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WarehouseBillEditView.xaml.cs">
+      <DependentUpon>WarehouseBillEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WarehouseBillListView.xaml.cs">
+      <DependentUpon>WarehouseBillListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MaterialEditView.xaml.cs">
+      <DependentUpon>MaterialEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MaterialListView.xaml.cs">
+      <DependentUpon>MaterialListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EmptyView.xaml.cs">
+      <DependentUpon>EmptyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProductEditView.xaml.cs">
+      <DependentUpon>ProductEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProductListView.xaml.cs">
+      <DependentUpon>ProductListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WarehouseBillTestimonyReportView.xaml.cs">
+      <DependentUpon>WarehouseBillTestimonyReportView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Common\LayoutItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Common\ModalDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Common\NavigateContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Common\RdlcPrintViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TestimonyReportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UnitEditView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UnitListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MaterialWarehouseBillReportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ReportListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TestimonyEditView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ProductSelectView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TestimonyListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\WarehouseBillEditView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\WarehouseBillListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MaterialEditView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MaterialListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EmptyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Domain\IBaseModel.cs" />
+    <Compile Include="Models\Domain\Product.cs" />
+    <Compile Include="Models\DAL\DataService.cs" />
+    <Compile Include="Models\DAL\IDataService.cs" />
+    <Compile Include="Models\DAL\ProductDataService.cs" />
+    <Compile Include="Models\SesaModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SesaModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\NavigationManagert.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\MvvmViewModelLocator.cs" />
+    <Compile Include="ViewModels\ProductListViewModel.cs" />
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\ProductEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProductListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WarehouseBillTestimonyReportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\MaterialWarehouseBill.rdlc">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\EmptyRdlc.rdlc" />
+    <EmbeddedResource Include="Reports\Testimony.rdlc">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\WarehouseBillTestimony.rdlc">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="Models\SesaModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SesaModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\SesaModel.edmx.sqlce" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Sesa.Desktop.Models.SesaModelContainer.datasource" />
+    <None Include="Properties\DataSources\Sesa.Desktop.Models.Testimony.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Sesa.Desktop_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Background1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ThirdParty\SqlCeCmd.exe" />
+    <Resource Include="Assets\appbar.cogs.png" />
+    <Resource Include="Assets\Icon1.ico" />
+    <Content Include="Database\AppDbFile.sdf" />
+    <Content Include="Database\UpdateDecimals.sql" />
+    <Content Include="Models\SesaModel.edmx.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SQL.Server.Compact.3.5">
+      <Visible>False</Visible>
+      <ProductName>SQL Server Compact 3.5 SP2</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

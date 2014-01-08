@@ -1,0 +1,49 @@
+﻿<common:UserControlBase x:Class="Sesa.Desktop.Views.WarehouseBillEditView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:common="clr-namespace:Sesa.Desktop.Common"
+            xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit" xmlns:views="clr-namespace:Sesa.Desktop.Views"
+                        xmlns:controls="clr-namespace:FarsiLibrary.FX.Win.Controls;assembly=FarsiLibrary.FX.Win"
+                        DataContext="{Binding Source={StaticResource Locator}, Path=WarehouseBillEditViewModel}"
+             >
+  <StackPanel Orientation="Vertical">
+    <StackPanel Orientation="Vertical">
+      <StackPanel Orientation="Horizontal">
+        <common:LayoutItem Label="شماره ردیف" Width="{StaticResource DefaultUnitWidth}">
+          <TextBox Text="{Binding Entity.RowNumber,ValidatesOnDataErrors=True}" Style="{StaticResource TextBoxStyle}"/>
+        </common:LayoutItem>
+        <common:LayoutItem Label="تاریخ صدور" Width="{StaticResource DefaultUnitWidth}">
+          <controls:FXDatePicker SelectedSolarDateTimeText="{Binding Entity.EmissionDate,Mode=TwoWay,ValidatesOnDataErrors=True}"/>
+        </common:LayoutItem>
+      </StackPanel>
+    </StackPanel>
+    <GroupBox Header="لیست مواد">
+      <DataGrid ItemsSource="{Binding Details}" AutoGenerateColumns="False" AlternatingRowBackground="{x:Null}"
+             CanUserAddRows="True" CanUserDeleteRows="True" CanUserReorderColumns="True"
+             RowHeaderWidth="20">
+        <DataGrid.Columns>
+          <DataGridComboBoxColumn Header="ماده" SelectedItemBinding ="{Binding Material,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" DisplayMemberPath="Caption">
+            <DataGridComboBoxColumn.ElementStyle>
+              <Style TargetType="ComboBox">
+                <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:WarehouseBillEditView}}, Path=DataContext.Materials}"/>
+                <Setter Property="IsReadOnly" Value="True"/>
+              </Style>
+            </DataGridComboBoxColumn.ElementStyle>
+            <DataGridComboBoxColumn.EditingElementStyle>
+              <Style TargetType="ComboBox">
+                <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:WarehouseBillEditView}}, Path=DataContext.Materials}"/>
+                <Setter Property="DisplayMemberPath" Value="Caption" />
+              </Style>
+            </DataGridComboBoxColumn.EditingElementStyle>
+          </DataGridComboBoxColumn>
+          <DataGridTextColumn Header="مقدار" Binding="{Binding MockValue,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+          <DataGridTextColumn Header="واحد" Binding="{Binding Material.Unit.Caption,ValidatesOnDataErrors=True}" IsReadOnly="True"/>
+          <DataGridTextColumn Header="وزن" Binding="{Binding Weight,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+          <DataGridTextColumn Header="وزن/واحد" Binding="{Binding WeightUnit,Mode=OneWay}" IsReadOnly="True"/>
+        </DataGrid.Columns>
+      </DataGrid>
+    </GroupBox>
+  </StackPanel>
+</common:UserControlBase>

@@ -1,0 +1,23 @@
+﻿<common:UserControlBase  x:Class="Sesa.Desktop.Views.ProductSelectView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:common="clr-namespace:Sesa.Desktop.Common"
+             xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit"
+                         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                         DataContext="{Binding Source={StaticResource Locator}, Path=ProductSelectViewModel}">
+    <Grid>
+        <my:DataGrid Name="dataGrid" ItemsSource="{Binding Entities}" AutoGenerateColumns="False" AlternatingRowBackground="{x:Null}" 
+                     CanUserAddRows="False" CanUserDeleteRows="False" 
+                     CanUserReorderColumns="True" IsReadOnly="True"
+                     RowHeaderWidth="20" SelectedItem="{Binding SelectedEntity}">
+            <my:DataGrid.Columns>
+                <my:DataGridTextColumn Header="عنوان" Binding="{Binding Caption}"/>
+            </my:DataGrid.Columns>
+          <i:Interaction.Triggers>
+            <i:EventTrigger EventName="MouseDoubleClick">
+              <i:InvokeCommandAction Command="{Binding SelectCommand}"/>
+            </i:EventTrigger>
+          </i:Interaction.Triggers>
+        </my:DataGrid>
+    </Grid>
+</common:UserControlBase>

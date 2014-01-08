@@ -1,0 +1,24 @@
+﻿<common:UserControlBase x:Class="Sesa.Desktop.Views.MaterialEditView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:common="clr-namespace:Sesa.Desktop.Common"
+            xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit" xmlns:views="clr-namespace:Sesa.Desktop.Views"
+                        DataContext="{Binding Source={StaticResource Locator}, Path=MaterialEditViewModel}"
+             >
+  <StackPanel Orientation="Vertical">
+    <StackPanel Orientation="Horizontal">
+      <common:LayoutItem Label="عنوان" Width="{StaticResource DefaultUnitWidth}">
+        <TextBox Text="{Binding Entity.Caption,ValidatesOnDataErrors=True}" Style="{StaticResource TextBoxStyle}"/>
+      </common:LayoutItem>
+      <common:LayoutItem Label="واحد" Width="{StaticResource DefaultUnitWidth}">
+        <ComboBox ItemsSource="{Binding Units}" SelectedItem="{Binding Entity.Unit,ValidatesOnDataErrors=True}" DisplayMemberPath="Caption" Style="{StaticResource ComboBoxStyle}"/>
+      </common:LayoutItem>
+    </StackPanel>
+    <StackPanel Orientation="Horizontal">
+      <CheckBox IsChecked="{Binding Entity.IsFloatValue}" Content="نمایش اعشاری" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="30,3,30,3"/>
+      <CheckBox IsChecked="{Binding Entity.IsPackingType}" Content="جزو اقلام بسته بندی" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+    </StackPanel>
+  </StackPanel>
+</common:UserControlBase>
