@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Forms.Integration;
 using Microsoft.Reporting.WinForms;

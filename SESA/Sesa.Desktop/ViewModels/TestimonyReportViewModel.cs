@@ -37,7 +37,7 @@ namespace Sesa.Desktop.ViewModels
             var testimony = TestimonyDataAccessService.Get(p => p.HeaderNumber == TestimonyNumber).FirstOrDefault();
             if (testimony == null)
             {
-                MessageBox.Show("گواهی با این شماره یافت نشد");
+                MessageBoxHelper.Show("گواهی با این شماره یافت نشد");
                 NavigationManagert.NavigateClose();
                 return;
             }
@@ -75,7 +75,8 @@ namespace Sesa.Desktop.ViewModels
             }).OrderBy(p => p.WarehouseBillRowNumber).ToArray();
             var setting = new RdlcReportSetting
                 {
-                    ReportPath = Path.Combine(Environment.CurrentDirectory, @"Reports\Testimony.rdlc"),
+                    //ReportPath = Path.Combine(Environment.CurrentDirectory, @"Reports\Testimony.rdlc"),
+                    ReportEmbeddedResource = "Sesa.Desktop.Reports.Testimony.rdlc",
                     ReportSource = new[] 
                     { 
                         new ReportDataSource("DataSet1", dataSourceValue1),

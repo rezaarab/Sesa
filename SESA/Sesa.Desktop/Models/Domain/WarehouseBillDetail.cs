@@ -17,7 +17,7 @@ namespace Sesa.Desktop.Models
 
         public decimal WeightUnit
         {
-            get { return decimal.Round((Value == 0 ? 0 : Weight / Value), 2); }
+            get { return decimal.Round((Value == 0 ? 0 : Weight / Value), 4); }
         }
 
         protected override void OnPropertyChanged(string property)

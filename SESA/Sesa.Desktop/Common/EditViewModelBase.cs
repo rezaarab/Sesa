@@ -61,7 +61,7 @@ namespace Sesa.Desktop.Common
                 var errors = Entity.GetErrors();
                 if (errors.Any())
                 {
-                    MessageBox.Show(string.Join(Environment.NewLine, errors.Values.Select(ResourceHelper.GetResource)), "هشدار", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBoxHelper.Show(string.Join(Environment.NewLine, errors.Values.Select(ResourceHelper.GetResource)), "هشدار", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return false;
                 }
                 if (Mode == FormMode.New)
@@ -74,31 +74,9 @@ namespace Sesa.Desktop.Common
             }
             catch (Exception ex)
             {
-                string messageBoxText = string.Format("خطای پایگاه داده {0} {1}", Environment.NewLine, GetExceptionMessages(ex));
-                MessageBox.Show(messageBoxText, "هشدار", MessageBoxButton.OK, MessageBoxImage.Warning);
-                try
-                {
-                    File.AppendAllText(Path.Combine(Directory.GetCurrentDirectory(), "Errors.txt"),
-                        string.Format("{0} {1}{2}{3}{2}{2}{2}",
-                        CultureHelper.GetCurrentDate(),
-                        CultureHelper.GetCurrentTime(),
-                        Environment.NewLine,
-                        messageBoxText));
-                }
-                catch { }
+                ExceptionHelper.ReportException(ex, "خطای پایگاه داده");
                 return false;
             }
-        }
-
-        private string GetExceptionMessages(Exception ex)
-        {
-            var message = ex.Message;
-            while (ex.InnerException != null)
-            {
-                message += string.Format("{0} InnerException:{0}{1}", Environment.NewLine, ex.InnerException.Message);
-                ex = ex.InnerException;
-            }
-            return message;
         }
 
         private bool _isValidExit = false;
@@ -120,7 +98,7 @@ namespace Sesa.Desktop.Common
         protected virtual void OnCancel()
         {
             if (_isValidExit ||
-                MessageBox.Show(ResourceHelper.GetResource("CancelQuestion"), ResourceHelper.GetResource("Cancel"),
+                MessageBoxHelper.Show(ResourceHelper.GetResource("CancelQuestion"), ResourceHelper.GetResource("Cancel"),
                                 MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 Entity = DataAccessService.GetByID(Entity.Id);

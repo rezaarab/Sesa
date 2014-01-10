@@ -15,10 +15,10 @@
       <sys:Double x:Key="FontSize0X">14</sys:Double>
       <sys:Double x:Key="FontSize1X">16</sys:Double>
       <sys:Double x:Key="FontSize2X">18</sys:Double>
-      <FontFamily x:Key="FontFamily1">Mj_Liner XL</FontFamily>
-      <FontFamily x:Key="FontFamily2">Mj_Liner XL</FontFamily>
-      <FontFamily x:Key="FontFamily3">Mj_Beirut</FontFamily>
-      <FontFamily x:Key="FontFamilyReport">Mj_Liner XL</FontFamily>
+      <FontFamily x:Key="FontFamily1">./Resources/#Mj_Liner XL</FontFamily>
+      <FontFamily x:Key="FontFamily2">./Resources/#Mj_Liner XL</FontFamily>
+      <FontFamily x:Key="FontFamily3">./Resources/#Mj_Beirut</FontFamily>
+      <FontFamily x:Key="FontFamilyReport">./Resources/#Mj_Liner XL</FontFamily>
       <sys:Double x:Key="DefaultUnitWidth">300</sys:Double>
       <sys:Double x:Key="KeepUnitWidth">150</sys:Double>
       <sys:Double x:Key="DefaultUnitHeight">30</sys:Double>

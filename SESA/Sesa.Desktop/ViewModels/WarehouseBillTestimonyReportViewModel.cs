@@ -31,7 +31,7 @@ namespace Sesa.Desktop.ViewModels
             var warehouseBill = WarehouseDataAccessService.Get(p => p.RowNumber == RowNumber).FirstOrDefault();
             if (warehouseBill == null)
             {
-                MessageBox.Show(@"قبض انبار با این شماره یافت نشد");
+                MessageBoxHelper.Show(@"قبض انبار با این شماره یافت نشد");
                 return;
             }
             var dataSourceValue1 = warehouseBill.TestimonyDetails.AsEnumerable().Select(p => new
@@ -60,7 +60,8 @@ namespace Sesa.Desktop.ViewModels
                 }).OrderBy(p => p.MaterialCaption).ThenBy(p => p.HeaderNumber).ToList();
             var setting = new RdlcReportSetting
                 {
-                    ReportPath = Path.Combine(Environment.CurrentDirectory, @"Reports\WarehouseBillTestimony.rdlc"),
+                    //ReportPath = Path.Combine(Environment.CurrentDirectory, @"Reports\WarehouseBillTestimony.rdlc"),
+                    ReportEmbeddedResource = "Sesa.Desktop.Reports.WarehouseBillTestimony.rdlc",
                     ReportSource = new[] { new ReportDataSource("DataSet1", dataSourceValue) },
                 };
             var navigation = SimpleIoc.Default.GetInstance<INavigation>("ReportViewer");

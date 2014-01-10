@@ -46,7 +46,7 @@ namespace Sesa.Desktop.Views
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Design & Implementation: \"REZA ARAB\" \n (MINOOTA@GMAIL.COM <--> 09119792045)");
+            MessageBoxHelper.Show("Design & Implementation: \"REZA ARAB\" \n (MINOOTA@GMAIL.COM <--> 09119792045)");
         }
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)

@@ -106,7 +106,7 @@ namespace Sesa.Desktop.ViewModels
         {
             if (Mode == FormMode.Edit && Entity.TestimonyDetails.Count > 0)
             {
-                MessageBox.Show("به دلیل صدور گواهی تولید برای این قبض مجاز به ویرایش قبض انبار نیستید");
+                MessageBoxHelper.Show("به دلیل صدور گواهی تولید برای این قبض مجاز به ویرایش قبض انبار نیستید");
                 return false;
             }
             UpdateDetails();

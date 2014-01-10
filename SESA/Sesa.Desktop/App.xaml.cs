@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Threading;
 using FarsiLibrary.FX.Utils;
+using Sesa.Desktop.Common;
 
 namespace Sesa.Desktop
 {
@@ -29,8 +31,7 @@ namespace Sesa.Desktop
         void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             var ex = e.ExceptionObject as Exception;
-            MessageBox.Show(ex.Message, "خطای سیستمی",
-                            MessageBoxButton.OK, MessageBoxImage.Error);
+            ExceptionHelper.ReportException(ex, "خطای سیستمی");
         }
 
         public bool DoHandle
@@ -42,19 +43,10 @@ namespace Sesa.Desktop
         private void Application_DispatcherUnhandledException(object sender,
                                System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            if (DoHandle)
-            {
-                //Handling the exception within the UnhandledException handler.
-                MessageBox.Show(e.Exception.Message, "خطای سیستمی",
-                                        MessageBoxButton.OK, MessageBoxImage.Error);
-                e.Handled = true;
-            }
-            else
-            {
-                //If you do not set e.Handled to true, the application will close due to crash.
-                MessageBox.Show("برنامه به دلیل خطای سیستمی بسته خواهد شد! ", "خطای سیستمی");
-                e.Handled = false;
-            }
+            e.Handled = DoHandle;
+            ExceptionHelper.ReportException(e.Exception, "خطای سیستمی");
+            if (!DoHandle)
+                MessageBoxHelper.Show("برنامه به دلیل خطای سیستمی بسته خواهد شد! ", "خطای سیستمی");
         }
     }
 }

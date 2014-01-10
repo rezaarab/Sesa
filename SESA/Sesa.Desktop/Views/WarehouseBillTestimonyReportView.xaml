@@ -10,7 +10,7 @@
   <Grid>
     <StackPanel Orientation="Vertical">
       <StackPanel Orientation="Horizontal">
-        <common:LayoutItem Label="تعداد" Width="{StaticResource DefaultUnitWidth}">
+        <common:LayoutItem Label="شماره قبض انبار" Width="{StaticResource DefaultUnitWidth}">
           <TextBox Text="{Binding RowNumber,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxStyle}"/>
         </common:LayoutItem>
         <Button Command="{Binding ShowCommand}" Content="نمایش"/>

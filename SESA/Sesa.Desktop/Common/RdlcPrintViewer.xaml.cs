@@ -10,7 +10,7 @@ namespace Sesa.Desktop.Common
         public RdlcPrintViewer()
         {
             InitializeComponent();
-            ReportViewer.LocalReport.ReportEmbeddedResource = "Sesa.Desktop.Common.Reports.EmptyRdlc.rdlc";
+            ReportViewer.LocalReport.ReportEmbeddedResource = "Sesa.Desktop.Reports.EmptyRdlc.rdlc";
             ReportViewer.SetDisplayMode(DisplayMode.PrintLayout);
             ReportViewer.ZoomMode = ZoomMode.PageWidth;
         }

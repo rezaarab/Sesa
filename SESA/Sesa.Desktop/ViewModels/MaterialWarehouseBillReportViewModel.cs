@@ -26,7 +26,8 @@ namespace Sesa.Desktop.ViewModels
                 }).OrderBy(p=>p.Caption).ThenBy(p=>p.RowNumber).ToArray();
             var setting = new RdlcReportSetting
                 {
-                    ReportPath = Path.Combine(Environment.CurrentDirectory, @"Reports\MaterialWarehouseBill.rdlc"),
+                    ReportEmbeddedResource = "Sesa.Desktop.Reports.MaterialWarehouseBill.rdlc",
+                    //ReportPath = Path.Combine(Environment.CurrentDirectory, @"Reports\MaterialWarehouseBill.rdlc"),
                     ReportSource = new[] { new ReportDataSource("DataSet1", dataSourceValue) },
                 };
             var navigation = SimpleIoc.Default.GetInstance<INavigation>("ReportViewer");

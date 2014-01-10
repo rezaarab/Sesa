@@ -402,14 +402,14 @@ namespace Sesa.Desktop.ViewModels
         {
             if (Mode == FormMode.Edit)
             {
-                MessageBox.Show("مجاز به ویرایش گواهی تولید نیستید");
+                MessageBoxHelper.Show("مجاز به ویرایش گواهی تولید نیستید");
                 return false;
             }
 
             if (Internals.Union(Externals).Any(p => p.WarehouseBill == null))
             {
                 var error = string.Join(" و ", Internals.Union(Externals).Where(p => p.WarehouseBill == null).Select(p => string.Format("\"{0}\"", p.Material.Caption)));
-                MessageBox.Show(string.Format("محصولات {0} در انبار موجود نیستند", error));
+                MessageBoxHelper.Show(string.Format("محصولات {0} در انبار موجود نیستند", error));
                 return false;
             }
             UpdateDetails();

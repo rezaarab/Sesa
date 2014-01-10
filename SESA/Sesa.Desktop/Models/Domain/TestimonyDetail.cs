@@ -24,8 +24,8 @@ namespace Sesa.Desktop.Models
             if (property == "Value")
             {
                 OnPropertyChanged("MockValue");
-                Weight = Value * (WarehouseBill != null && WarehouseBill.WarehouseBillDetails.Any(p => p.Material == Material) ?
-                    WarehouseBill.WarehouseBillDetails.First(p => p.Material == Material).WeightUnit : 0);
+                Weight = decimal.Round(Value * (WarehouseBill != null && WarehouseBill.WarehouseBillDetails.Any(p => p.Material == Material) ?
+                    WarehouseBill.WarehouseBillDetails.First(p => p.Material == Material).WeightUnit : 0), 2);
             }
         }
 
