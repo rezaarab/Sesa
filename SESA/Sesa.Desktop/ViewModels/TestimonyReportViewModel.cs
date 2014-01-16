@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Reporting.WinForms;
+using MiscUtil.Collections;
 using Sesa.Desktop.Common;
 using Sesa.Desktop.Models;
 
@@ -57,22 +59,31 @@ namespace Sesa.Desktop.ViewModels
                     testimony.RequestDate,
                     testimony.RequestNumber,
                 }};
-            var dataSourceValue2 = testimony.TestimonyDetails.Where(p => p.IsInternal).AsEnumerable().Select(p => new
+            var internalOrder = testimony.Product.InternalProductMaterials.Select(p => p.Material).ToList();
+            var dataSourceValue2 = testimony.TestimonyDetails.Where(p => p.IsInternal).AsEnumerable()
+                .OrderBy(p => p.WarehouseBill.RowNumber)
+                .OrderBy(p => p.Material, ProjectionComparer<Material>.Create(internalOrder.IndexOf))
+                .Select(p => new
                 {
                     MaterialCaption = p.Material.Caption,
                     ValueCaption = string.Format("{0} {1}", p.MockValue, p.Material.Unit.Caption),
                     WarehouseBillRowNumber = p.WarehouseBill.RowNumber,
                     WarehouseBillDate = p.WarehouseBill.EmissionDate,
                     p.Weight
-                }).OrderBy(p => p.WarehouseBillRowNumber).ToArray();
-            var dataSourceValue3 = testimony.TestimonyDetails.Where(p => !p.IsInternal).AsEnumerable().Select(p => new
+                }).ToArray();
+
+            var externalOrder = testimony.Product.InternalProductMaterials.Select(p => p.Material).ToList();
+            var dataSourceValue3 = testimony.TestimonyDetails.Where(p => !p.IsInternal).AsEnumerable()
+              .OrderBy(p => p.WarehouseBill.RowNumber)
+              .OrderBy(p => p.Material, ProjectionComparer<Material>.Create(externalOrder.IndexOf))
+              .Select(p => new
             {
                 MaterialCaption = p.Material.Caption,
                 ValueCaption = string.Format("{0} {1}", p.MockValue, p.Material.Unit.Caption),
                 WarehouseBillRowNumber = p.WarehouseBill.RowNumber,
                 WarehouseBillDate = p.WarehouseBill.EmissionDate,
                 p.Weight
-            }).OrderBy(p => p.WarehouseBillRowNumber).ToArray();
+            }).ToArray();
             var setting = new RdlcReportSetting
                 {
                     //ReportPath = Path.Combine(Environment.CurrentDirectory, @"Reports\Testimony.rdlc"),

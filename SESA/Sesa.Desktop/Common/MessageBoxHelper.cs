@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
-using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace Sesa.Desktop.Common
 {

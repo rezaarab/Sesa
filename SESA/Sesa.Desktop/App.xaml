@@ -78,7 +78,6 @@
       <sys:String x:Key="WarehouseBillDetailsError">در یکی از آیتم های انبار خطا وجود دارد</sys:String>
       <sys:String x:Key="SameWarehouseBillDetailsError">یکی از آیتم های انبار تکراری است</sys:String>
       <sys:String x:Key="TestimonyDetailsError">در یکی از آیتم های گواهی خطا وجود دارد</sys:String>
-      <sys:String x:Key="SameTestimonyDetailsError">یکی از آیتم های گواهی تکراری است</sys:String>
       <sys:String x:Key="InternalProductMaterialsError">در یکی از مواد داخلی خطا وجود دارد</sys:String>
       <sys:String x:Key="ExternalProductMaterialError">در یکی از مواد خارجی خطا وجود دارد</sys:String>
       <sys:String x:Key="True">بلی</sys:String>

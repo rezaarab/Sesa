@@ -1607,7 +1607,7 @@
         <KeepTogether>true</KeepTogether>
         <Top>1.45972in</Top>
         <Left>0.63024in</Left>
-        <Height>9.6418in</Height>
+        <Height>2.86055in</Height>
         <Width>6.98436in</Width>
         <Style>
           <Border>
@@ -1821,8 +1821,8 @@
                   <TextRun>
                     <Value>گواهی تولید</Value>
                     <Style>
-                      <FontFamily>B Arshia</FontFamily>
-                      <FontSize>28pt</FontSize>
+                      <FontFamily>B Yekan</FontFamily>
+                      <FontSize>22pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1945,7 +1945,7 @@
         </Style>
       </Rectangle>
     </ReportItems>
-    <Height>11.28902in</Height>
+    <Height>4.4661in</Height>
     <Style>
       <Border>
         <Style>None</Style>

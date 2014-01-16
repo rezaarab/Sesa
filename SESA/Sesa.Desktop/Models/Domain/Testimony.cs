@@ -46,8 +46,6 @@ namespace Sesa.Desktop.Models
                 errors.Add("RequestNumber", "RequestNumberRequired");
             if (this.TestimonyDetails.SelectMany(p => p.GetErrors()).Any())
                 errors.Add("TestimonyDetails", "TestimonyDetailsError");
-            if (this.TestimonyDetails.GroupBy(p => p.Material != null ? p.Material.Id : Guid.Empty).Any(p => p.Count() > 1))
-                errors.Add("TestimonyDetails", "SameTestimonyDetailsError");
             return errors;
         }
     }
