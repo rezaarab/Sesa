@@ -16,7 +16,7 @@ namespace Sesa.Desktop.Common
             MessageBoxHelper.Show(messageBoxText, "هشدار", MessageBoxButton.OK, MessageBoxImage.Warning);
             try
             {
-                File.AppendAllText(Path.Combine(Directory.GetCurrentDirectory(), "Errors.txt"),
+                File.AppendAllText("C:\\Sesa\\Errors.txt",
                     string.Format("{0} {1}{2}{3}{2}{2}{2}",
                     CultureHelper.GetCurrentDate(),
                     CultureHelper.GetCurrentTime(),

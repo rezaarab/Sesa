@@ -422,6 +422,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="ThirdParty\updatedecimal.bat" />
     <Resource Include="Resources\P Yekan.ttf" />
     <Resource Include="Resources\B Koodak.ttf" />
     <Resource Include="Resources\B Arshia.ttf" />
