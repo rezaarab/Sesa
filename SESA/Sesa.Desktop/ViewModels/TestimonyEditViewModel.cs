@@ -140,7 +140,7 @@ namespace Sesa.Desktop.ViewModels
                                       WarehouseBill = p.WarehouseBill,
                                       Consume =
                                                p.WarehouseBill.TestimonyDetails.Where(
-                                                   q => q.Material == externalMaterial.Material).Sum(q => q.Value),
+                                                   q => (q.Testimony == null || q.Testimony.Id != Entity.Id) && q.Material == externalMaterial.Material).Sum(q => q.Value),
                                       Orginal =
                                                p.WarehouseBill.WarehouseBillDetails.Where(
                                                    q => q.Material == externalMaterial.Material).Sum(q => q.Value),
@@ -182,7 +182,7 @@ namespace Sesa.Desktop.ViewModels
 
         private void SetExternalInInternalTestimonyDetail()
         {
-            Entity.Product.ExternalProductMaterial.Where(p => InternalMaterials.Contains(p.Material)).ToList().ForEach(externalMaterial =>
+            Entity.Product.ExternalProductMaterial.Where(p => InternalMaterials.Contains(p.Material)).OrderBy(p => p.Sort).ToList().ForEach(externalMaterial =>
             {
                 var currentValue = externalMaterial.Value * Entity.ProductCount;
                 var items = externalMaterial
@@ -192,7 +192,7 @@ namespace Sesa.Desktop.ViewModels
                     .Select(p => new
                     {
                         WarehouseBill = p.WarehouseBill,
-                        Consume = p.WarehouseBill.TestimonyDetails.Where(q => q.Material == externalMaterial.Material)
+                        Consume = p.WarehouseBill.TestimonyDetails.Where(q => (q.Testimony == null || q.Testimony.Id != Entity.Id) && q.Material == externalMaterial.Material)
                                   .Sum(q => q.Value),
                         Orginal = p.WarehouseBill.WarehouseBillDetails.Where(q => q.Material == externalMaterial.Material)
                                   .Sum(q => q.Value),
@@ -241,7 +241,7 @@ namespace Sesa.Desktop.ViewModels
                 detail.WarehouseBill = null;
             }
             Internals.Clear();
-            Entity.Product.InternalProductMaterials.ToList().ForEach(internalMaterial =>
+            Entity.Product.InternalProductMaterials.OrderBy(p => p.Sort).ToList().ForEach(internalMaterial =>
                 {
                     var currentValue = internalMaterial.Value * Entity.ProductCount;
                     var items = internalMaterial
@@ -252,7 +252,7 @@ namespace Sesa.Desktop.ViewModels
                             {
                                 WarehouseBill = p.WarehouseBill,
                                 Consume =
-                                         p.WarehouseBill.TestimonyDetails.Where(q => q.Material == internalMaterial.Material)
+                                         p.WarehouseBill.TestimonyDetails.Where(q => (q.Testimony == null || q.Testimony.Id != Entity.Id) && q.Material == internalMaterial.Material)
                                           .Sum(q => q.Value),
                                 Orginal =
                                          p.WarehouseBill.WarehouseBillDetails.Where(q => q.Material == internalMaterial.Material)
@@ -400,11 +400,11 @@ namespace Sesa.Desktop.ViewModels
 
         protected override bool OnSave()
         {
-            if (Mode == FormMode.Edit)
-            {
-                MessageBoxHelper.Show("مجاز به ویرایش گواهی تولید نیستید");
-                return false;
-            }
+//            if (Mode == FormMode.Edit)
+//            {
+//                MessageBoxHelper.Show("مجاز به ویرایش گواهی تولید نیستید");
+//                return false;
+//            }
 
             if (Internals.Union(Externals).Any(p => p.WarehouseBill == null))
             {

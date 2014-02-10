@@ -95,6 +95,7 @@
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Value" Type="decimal" Nullable="false" />
     <Property Name="Pert" Type="decimal" Nullable="false" DefaultValue="0" />
+    <Property Name="Sort" Type="int" Nullable="false" DefaultValue="0" />
     <Property Name="Material_Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Product_Id" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
@@ -162,6 +163,7 @@
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Value" Type="decimal" Nullable="false" />
     <Property Name="Pert" Type="decimal" Nullable="false" DefaultValue="0" />
+    <Property Name="Sort" Type="int" Nullable="false" DefaultValue="0" />
     <Property Name="Product_Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Material_Id" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
@@ -422,6 +424,7 @@
           <Property Type="Guid" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Type="Decimal" Name="Value" Nullable="false" />
           <Property Type="Decimal" Name="Pert" Nullable="false" DefaultValue="0" />
+          <Property Type="Int32" Name="Sort" Nullable="false" DefaultValue="0" />
           <NavigationProperty Name="Material" Relationship="SesaModel.InternalMaterialProductMaterial" FromRole="ProductMaterialTable" ToRole="Material" />
           <NavigationProperty Name="Product" Relationship="SesaModel.InternalProductProductMaterial" FromRole="ProductMaterialTable" ToRole="Product" />
         </EntityType>
@@ -536,6 +539,7 @@
           <Property Type="Guid" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Type="Decimal" Name="Value" Nullable="false" />
           <Property Type="Decimal" Name="Pert" Nullable="false" DefaultValue="0" />
+          <Property Type="Int32" Name="Sort" Nullable="false" DefaultValue="0" />
           <NavigationProperty Name="Product" Relationship="SesaModel.ProductExternalProductMaterial" FromRole="ExternalProductMaterial" ToRole="Product" />
           <NavigationProperty Name="Material" Relationship="SesaModel.MaterialExternalProductMaterial" FromRole="ExternalProductMaterial" ToRole="Material" />
         </EntityType>
@@ -594,6 +598,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Value" ColumnName="Value" />
           <ScalarProperty Name="Pert" ColumnName="Pert" />
+          <ScalarProperty Name="Sort" ColumnName="Sort" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -658,6 +663,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Value" ColumnName="Value" />
           <ScalarProperty Name="Pert" ColumnName="Pert" />
+          <ScalarProperty Name="Sort" ColumnName="Sort" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -834,20 +840,20 @@
           <ConnectorPoint PointX="4" PointY="2.3049194921875014" />
         </AssociationConnector>
         <AssociationConnector Association="SesaModel.MaterialTestimonyDetail">
-          <ConnectorPoint PointX="6.625" PointY="2.7038378906250005" />
-          <ConnectorPoint PointX="5.5" PointY="2.7038378906250005" />
+          <ConnectorPoint PointX="6.625" PointY="2.7999886067708335" />
+          <ConnectorPoint PointX="5.5" PointY="2.7999886067708335" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="SesaModel.ExternalProductMaterial" Width="1.5" PointX="6.25" PointY="0.5" Height="1.787985026041667" />
+        <EntityTypeShape EntityType="SesaModel.ExternalProductMaterial" Width="1.5" PointX="6.25" PointY="0.5" Height="2.172587890625" />
         <AssociationConnector Association="SesaModel.ProductExternalProductMaterial">
           <ConnectorPoint PointX="4.625" PointY="3" />
           <ConnectorPoint PointX="4.625" PointY="2.9273893229166674" />
           <ConnectorPoint PointX="5.5625" PointY="2.9273893229166674" />
-          <ConnectorPoint PointX="5.5625" PointY="1.3939925130208333" />
-          <ConnectorPoint PointX="6.25" PointY="1.3939925130208333" />
+          <ConnectorPoint PointX="5.5625" PointY="1.5862939453124998" />
+          <ConnectorPoint PointX="6.25" PointY="1.5862939453124998" />
         </AssociationConnector>
         <AssociationConnector Association="SesaModel.MaterialExternalProductMaterial">
-          <ConnectorPoint PointX="8.125" PointY="3.6535953776041663" />
-          <ConnectorPoint PointX="8.5" PointY="3.6535953776041663" />
+          <ConnectorPoint PointX="8.125" PointY="3.8458968098958328" />
+          <ConnectorPoint PointX="8.5" PointY="3.8458968098958328" />
           <ConnectorPoint PointX="8.5" PointY="1.4062505" />
           <ConnectorPoint PointX="7.75" PointY="1.4062505" />
         </AssociationConnector>

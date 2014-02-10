@@ -72,11 +72,11 @@ namespace Sesa.Desktop.ViewModels
 
             InternalMaterialAccessService = SimpleIoc.Default.GetInstance<IDataService<InternalProductMaterial>>(key);
             InternalMaterialAccessService.SyncContext(key);
-            Internals = new ObservableCollection<InternalProductMaterial>(Entity.InternalProductMaterials);
+            Internals = new ObservableCollection<InternalProductMaterial>(Entity.InternalProductMaterials.OrderBy(p=>p.Sort));
 
             ExternalMaterialAccessService = SimpleIoc.Default.GetInstance<IDataService<ExternalProductMaterial>>(key);
             ExternalMaterialAccessService.SyncContext(key);
-            Externals = new ObservableCollection<ExternalProductMaterial>(Entity.ExternalProductMaterial);
+            Externals = new ObservableCollection<ExternalProductMaterial>(Entity.ExternalProductMaterial.OrderBy(p => p.Sort));
         }
 
         protected override bool OnSave()

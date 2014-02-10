@@ -28,6 +28,7 @@
              CanUserAddRows="True" CanUserDeleteRows="True" CanUserReorderColumns="True"
              RowHeaderWidth="20">
         <DataGrid.Columns>
+          <DataGridTextColumn SortDirection="Ascending" Header="ترتیب" Binding="{Binding Sort,ValidatesOnDataErrors=True}"/>
           <DataGridComboBoxColumn Header="ماده" SelectedItemBinding ="{Binding Material,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" DisplayMemberPath="Caption">
             <DataGridComboBoxColumn.ElementStyle>
               <Style TargetType="ComboBox">
@@ -53,6 +54,7 @@
              CanUserAddRows="True" CanUserDeleteRows="True" CanUserReorderColumns="True"
              RowHeaderWidth="20">
         <DataGrid.Columns>
+          <DataGridTextColumn SortDirection="Ascending" Header="ترتیب" Binding="{Binding Sort,ValidatesOnDataErrors=True}"/>
           <DataGridComboBoxColumn Header="ماده" SelectedItemBinding ="{Binding Material,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" DisplayMemberPath="Caption">
             <DataGridComboBoxColumn.ElementStyle>
               <Style TargetType="ComboBox">
