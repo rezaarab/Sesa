@@ -104,11 +104,11 @@ namespace Sesa.Desktop.ViewModels
 
         protected override bool OnSave()
         {
-            if (Mode == FormMode.Edit && Entity.TestimonyDetails.Count > 0)
-            {
-                MessageBoxHelper.Show("به دلیل صدور گواهی تولید برای این قبض مجاز به ویرایش قبض انبار نیستید");
-                return false;
-            }
+//            if (Mode == FormMode.Edit && Entity.TestimonyDetails.Count > 0)
+//            {
+//                MessageBoxHelper.Show("به دلیل صدور گواهی تولید برای این قبض انبار مجاز به ویرایش آن نیستید");
+//                return false;
+//            }
             UpdateDetails();
             return base.OnSave();
         }

@@ -57,7 +57,7 @@ namespace Sesa.Desktop.ViewModels
             get
             {
                 return _calculateCommand
-                    ?? (_calculateCommand = new RelayCommand(OnCalculate, () => Mode == FormMode.New));
+                    ?? (_calculateCommand = new RelayCommand(OnCalculate, () => true));
             }
         }
 
@@ -373,9 +373,17 @@ namespace Sesa.Desktop.ViewModels
 
             TestimonyDetailAccessService = SimpleIoc.Default.GetInstance<IDataService<TestimonyDetail>>(key);
             TestimonyDetailAccessService.SyncContext(key);
-            Internals = new ObservableCollection<TestimonyDetail>(Entity.TestimonyDetails.Where(p => p.IsInternal));
-            Externals = new ObservableCollection<TestimonyDetail>(Entity.TestimonyDetails.Where(p => !p.IsInternal));
 
+            try
+            {
+                Internals = new ObservableCollection<TestimonyDetail>(Entity.TestimonyDetails.Where(p => p.IsInternal).OrderBy(p => p.Testimony.Product.InternalProductMaterials.First(q => p.Material == q.Material).Sort));
+                Externals = new ObservableCollection<TestimonyDetail>(Entity.TestimonyDetails.Where(p => !p.IsInternal).OrderBy(p => p.Testimony.Product.ExternalProductMaterial.First(q => p.Material == q.Material).Sort));
+            }
+            catch (Exception)
+            {
+                Internals = new ObservableCollection<TestimonyDetail>(Entity.TestimonyDetails.Where(p => p.IsInternal));
+                Externals = new ObservableCollection<TestimonyDetail>(Entity.TestimonyDetails.Where(p => !p.IsInternal));
+            }
 
             ProductAccessService = SimpleIoc.Default.GetInstance<IDataService<Product>>(key);
             ProductAccessService.SyncContext(key);
@@ -400,11 +408,11 @@ namespace Sesa.Desktop.ViewModels
 
         protected override bool OnSave()
         {
-//            if (Mode == FormMode.Edit)
-//            {
-//                MessageBoxHelper.Show("مجاز به ویرایش گواهی تولید نیستید");
-//                return false;
-//            }
+            //            if (Mode == FormMode.Edit)
+            //            {
+            //                MessageBoxHelper.Show("مجاز به ویرایش گواهی تولید نیستید");
+            //                return false;
+            //            }
 
             if (Internals.Union(Externals).Any(p => p.WarehouseBill == null))
             {

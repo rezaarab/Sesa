@@ -34,7 +34,7 @@
     <PublisherName>رضا عرب</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -436,10 +436,10 @@
     <Resource Include="Assets\Background1.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ThirdParty\FarsiLibrary.FX.Win.dll" />
-    <Content Include="ThirdParty\Microsoft.ReportViewer.ProcessingObjectModel.dll" />
-    <Content Include="ThirdParty\MiscUtil.dll" />
-    <Content Include="ThirdParty\SqlCeCmd.exe" />
+    <None Include="ThirdParty\FarsiLibrary.FX.Win.dll" />
+    <None Include="ThirdParty\Microsoft.ReportViewer.ProcessingObjectModel.dll" />
+    <None Include="ThirdParty\MiscUtil.dll" />
+    <None Include="ThirdParty\SqlCeCmd.exe" />
     <Resource Include="Assets\appbar.cogs.png" />
     <Resource Include="Assets\Icon1.ico" />
     <Content Include="Database\AppDbFile.sdf" />
@@ -479,6 +479,26 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <PublishFile Include="Database\AppDbFile.sdf">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Database\UpdateDecimals.sql">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
     <PublishFile Include="Microsoft.ReportViewer.DataVisualization">
       <Visible>False</Visible>
       <Group>
@@ -508,6 +528,26 @@
       <PublishState>Include</PublishState>
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Models\SesaModel.edmx.sql">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Sesa.Desktop.pdb">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
