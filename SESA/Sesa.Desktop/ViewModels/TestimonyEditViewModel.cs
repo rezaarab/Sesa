@@ -369,8 +369,10 @@ namespace Sesa.Desktop.ViewModels
         {
             MaterialAccessService = SimpleIoc.Default.GetInstance<IDataService<Material>>(key);
             MaterialAccessService.SyncContext(key);
-            InternalMaterials = new ObservableCollection<Material>(Entity.Product.ExternalProductMaterial.Select(p => p.Material).Except(ExternalMaterials));
-
+            if (Mode == FormMode.Edit)
+                InternalMaterials = new ObservableCollection<Material>(Entity.Product.ExternalProductMaterial.Select(p => p.Material).Except(ExternalMaterials));
+            else
+                InternalMaterials = new ObservableCollection<Material>();
             TestimonyDetailAccessService = SimpleIoc.Default.GetInstance<IDataService<TestimonyDetail>>(key);
             TestimonyDetailAccessService.SyncContext(key);
 
