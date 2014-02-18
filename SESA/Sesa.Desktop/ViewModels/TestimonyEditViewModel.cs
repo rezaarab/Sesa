@@ -369,7 +369,7 @@ namespace Sesa.Desktop.ViewModels
         {
             MaterialAccessService = SimpleIoc.Default.GetInstance<IDataService<Material>>(key);
             MaterialAccessService.SyncContext(key);
-            InternalMaterials = new ObservableCollection<Material>();
+            InternalMaterials = new ObservableCollection<Material>(Entity.Product.ExternalProductMaterial.Select(p => p.Material).Except(ExternalMaterials));
 
             TestimonyDetailAccessService = SimpleIoc.Default.GetInstance<IDataService<TestimonyDetail>>(key);
             TestimonyDetailAccessService.SyncContext(key);
@@ -391,7 +391,14 @@ namespace Sesa.Desktop.ViewModels
             InternalProductMaterialAccessService = SimpleIoc.Default.GetInstance<IDataService<InternalProductMaterial>>(key);
             InternalProductMaterialAccessService.SyncContext(key);
         }
-
+        protected override void OnEntityChanged()
+        {
+            base.OnEntityChanged();
+            if (Entity != null && Mode == FormMode.Edit)
+                ExternalMaterials = new ObservableCollection<Material>(
+                    Entity.Product.ExternalProductMaterial.Select(p => p.Material)
+                    .Except(Entity.TestimonyDetails.Where(p => p.IsInternal).Select(q => q.Material)));
+        }
         private void SetProduct()
         {
             if (Entity != null)
