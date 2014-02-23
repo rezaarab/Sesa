@@ -97,7 +97,7 @@ namespace Sesa.Desktop.Common
 
         protected virtual void OnCancel()
         {
-            if (_isValidExit ||
+            if (_isValidExit || true ||
                 MessageBoxHelper.Show(ResourceHelper.GetResource("CancelQuestion"), ResourceHelper.GetResource("Cancel"),
                                 MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
@@ -143,6 +143,7 @@ namespace Sesa.Desktop.Common
             _key = Guid.NewGuid().ToString();
             DataAccessService = SimpleIoc.Default.GetInstance<IDataService<T>>(_key);
             DataAccessService.SyncContext(_key);
+            _isValidExit = false;
             if (Entity != null && Mode == FormMode.Edit)
             {
                 Entity = DataAccessService.GetByID(Entity.Id);

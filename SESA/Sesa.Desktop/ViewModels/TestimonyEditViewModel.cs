@@ -145,7 +145,7 @@ namespace Sesa.Desktop.ViewModels
                                                p.WarehouseBill.WarehouseBillDetails.Where(
                                                    q => q.Material == externalMaterial.Material).Sum(q => q.Value),
                                   })
-                              .Where(p => p.Consume < currentValue)
+                              .Where(p => p.Consume < p.Orginal)
                               .OrderBy(p => p.WarehouseBill.RowNumber).ToArray();
                           var tempValue = currentValue;
                           foreach (var item in items)
@@ -197,7 +197,7 @@ namespace Sesa.Desktop.ViewModels
                         Orginal = p.WarehouseBill.WarehouseBillDetails.Where(q => q.Material == externalMaterial.Material)
                                   .Sum(q => q.Value),
                     })
-                    .Where(p => p.Consume < currentValue)
+                    .Where(p => p.Consume < p.Orginal)
                     .OrderBy(p => p.WarehouseBill.RowNumber).ToArray();
                 var tempValue = currentValue;
                 foreach (var item in items)
@@ -258,7 +258,7 @@ namespace Sesa.Desktop.ViewModels
                                          p.WarehouseBill.WarehouseBillDetails.Where(q => q.Material == internalMaterial.Material)
                                           .Sum(q => q.Value),
                             })
-                        .Where(p => p.Consume < currentValue)
+                        .Where(p => p.Consume < p.Orginal)
                         .OrderBy(p => p.WarehouseBill.RowNumber).ToArray();
                     var tempValue = currentValue;
                     foreach (var item in items)
@@ -376,16 +376,18 @@ namespace Sesa.Desktop.ViewModels
             TestimonyDetailAccessService = SimpleIoc.Default.GetInstance<IDataService<TestimonyDetail>>(key);
             TestimonyDetailAccessService.SyncContext(key);
 
-            try
-            {
-                Internals = new ObservableCollection<TestimonyDetail>(Entity.TestimonyDetails.Where(p => p.IsInternal).OrderBy(p => p.Testimony.Product.InternalProductMaterials.First(q => p.Material == q.Material).Sort));
-                Externals = new ObservableCollection<TestimonyDetail>(Entity.TestimonyDetails.Where(p => !p.IsInternal).OrderBy(p => p.Testimony.Product.ExternalProductMaterial.First(q => p.Material == q.Material).Sort));
-            }
-            catch (Exception)
-            {
-                Internals = new ObservableCollection<TestimonyDetail>(Entity.TestimonyDetails.Where(p => p.IsInternal));
-                Externals = new ObservableCollection<TestimonyDetail>(Entity.TestimonyDetails.Where(p => !p.IsInternal));
-            }
+            Func<TestimonyDetail, int> func = p =>
+                {
+                    var inpm = p.Testimony.Product.InternalProductMaterials.FirstOrDefault(q => p.Material == q.Material);
+                    if (inpm != null)
+                        return inpm.Sort;
+                    var expm = p.Testimony.Product.ExternalProductMaterial.FirstOrDefault(q => p.Material == q.Material);
+                    if (expm != null)
+                        return expm.Sort;
+                    return 0;
+                };
+            Internals = new ObservableCollection<TestimonyDetail>(Entity.TestimonyDetails.Where(p => p.IsInternal).OrderBy(func));
+            Externals = new ObservableCollection<TestimonyDetail>(Entity.TestimonyDetails.Where(p => !p.IsInternal).OrderBy(func));
 
             ProductAccessService = SimpleIoc.Default.GetInstance<IDataService<Product>>(key);
             ProductAccessService.SyncContext(key);

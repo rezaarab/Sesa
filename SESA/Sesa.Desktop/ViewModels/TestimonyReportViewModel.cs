@@ -59,10 +59,11 @@ namespace Sesa.Desktop.ViewModels
                     testimony.RequestDate,
                     testimony.RequestNumber,
                 }};
-            var internalOrder = testimony.Product.InternalProductMaterials.OrderBy(p=>p.Sort).Select(p => p.Material).ToList();
+            var materialOrder = testimony.Product.InternalProductMaterials.OrderBy(p=>p.Sort).Select(p => p.Material)
+                .Concat(testimony.Product.ExternalProductMaterial.OrderBy(p => p.Sort).Select(p => p.Material)).ToList();
             var dataSourceValue2 = testimony.TestimonyDetails.Where(p => p.IsInternal).AsEnumerable()
                 .OrderBy(p => p.WarehouseBill.RowNumber)
-                .OrderBy(p => p.Material, ProjectionComparer<Material>.Create(internalOrder.IndexOf))
+                .OrderBy(p => p.Material, ProjectionComparer<Material>.Create(materialOrder.IndexOf))
                 .Select(p => new
                 {
                     MaterialCaption = p.Material.Caption,
@@ -72,10 +73,9 @@ namespace Sesa.Desktop.ViewModels
                     p.Weight
                 }).ToArray();
 
-            var externalOrder = testimony.Product.InternalProductMaterials.OrderBy(p => p.Sort).Select(p => p.Material).ToList();
             var dataSourceValue3 = testimony.TestimonyDetails.Where(p => !p.IsInternal).AsEnumerable()
               .OrderBy(p => p.WarehouseBill.RowNumber)
-              .OrderBy(p => p.Material, ProjectionComparer<Material>.Create(externalOrder.IndexOf))
+              .OrderBy(p => p.Material, ProjectionComparer<Material>.Create(materialOrder.IndexOf))
               .Select(p => new
             {
                 MaterialCaption = p.Material.Caption,
